@@ -1,10 +1,75 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>DND Initiative Roller</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" media="screen">
+
+   <script src="index.js" charset="utf-8" defer></script>
+
+
   </head>
+  <header>
+     <a href="#"><h1 class="site-title"> DND Initiative Roller</h1></a>
+    <nav class="navbar">
+          <ul class="navlist">
+            <li class="navitem navlink active"><a href="#">Home</a></li>
+            <li class="navitem navlink"><a href="#">Classes</a></li>
+            <li class="navitem navlink"><a href="#">Items</a></li>
+            <li class="navitem navlink"><a href="#">Spells</a></li>
+            <li class="navitem navlink"><a href="/about">About</a></li>
+          </ul>
+        </nav>
+  </header>
   <body>
-    <p> Hello There </p>
+<!-- <button type="button" id="create-initiative-button"></button> -->
+
+<div class="button-position">
+    <button class="btn create-initiative" id="create-initiative-button">Roll Initiative</button>
+</div>
+
+
+<div>
+  <li class="navbar-search">
+    <input type="text" id="navbar-search-input" placeholder="Search...">
+    <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
+  </li>
+</div>
+
+
+
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="search-creature-modal" class="hidden">
+      <div class="modal-dialog">
+
+        <div class="modal-header">
+          <h2>Search for a Creature</h2>
+          <button type="button" class="modal-close-button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-input-element">
+            <label for="modal-text-input"> Enter a Creature</label>
+            <input type="text" id="modal-attribution-input">
+        
+          </div>
+          <div class="modal-input-element">
+            <label for="modal-attribution-input">Number of Creature(s)</label>
+            <input type="text" id="modal-attribution-input">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="modal-cancel-button">Cancel</button>
+          <button type="button" class="modal-accept-button">Create Initiative</button>
+        </div>
+
+
+
+      </div>
+    </div>
+
   </body>
 </html>
