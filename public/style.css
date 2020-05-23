@@ -234,15 +234,16 @@ a:focus {
 }
 
 .modal-footer .modal-cancel-button:hover {
-  background-color: #eee;
+  background-color: red;
+  color:black;
 }
 
 .modal-footer .modal-accept-button {
-  background-color: red;
+
   color: black;
 }
 
 .modal-footer .modal-accept-button:hover {
-  background-color: black;
-  color:red;
+  background-color: red;
+  color: black;
 }
