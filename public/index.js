@@ -16,7 +16,7 @@ var url= "http://dnd5eapi.co/api/monsters/";
 
 initiativeButton.onclick = function() {
   modal.style.display = "block";
-  console.log("button clicked");
+
   document.getElementById("modal-text-input").value= "";
   document.getElementById("modal-number-input").value= "";
 
@@ -54,6 +54,12 @@ function acceptModal(){
     prompt();
   }else{
 // this will call the function that handles the initiative rolling/displaying of the creatures
+console.log("Here are the inputs for creature: ", textInput);
+console.log("Here are the input for the number of creatures: ", numberInput);
+var apiUrl=url+textInput;
+console.log("Here is the link to be requested: ", apiUrl);
+
+
   }
 
 }

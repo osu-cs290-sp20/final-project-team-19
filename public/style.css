@@ -91,8 +91,8 @@ a:focus {
   margin: 0;
   padding-top:10px;
   position: absolute;
-  top: 15%;
-  left: 50%;
+  left:50%;
+  top: 90%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
@@ -110,31 +110,41 @@ a:focus {
   text-align: right;
   font-weight: bold;
 }
-.btn {
-  border: none;
-  background-color: inherit;
+.btn .create-initative{
+  /* border: 2px;
+  border-color: black;
+  background-color: white;
   padding: 14px 28px;
-  font-size: 16px;
+  font-size: 16px; */
   cursor: pointer;
   display: inline-block;
 }
 /* square button for creating an intiative, pops up the modal */
 .create-initiative{
   color: red;
+  border: 2px;
+  border-color: red;
+  background-color: black ;
+  padding: 14px 28px;
+  font-size: 16px;
+    cursor: pointer;
 }
 
 .create-initiative:hover{
   background: #f44336;
   color: white;
+  border: 2px;
+  border-color: red;
 }
 
 .create-initiative:focus {
   outline: none;
 }
-
+/* ____________________________________________
+Modal for creating initative */
 #modal-backdrop {
   position: fixed;
-  top: 0;
+  top: 500;
   bottom: 0;
   left: 0;
   right: 0;
@@ -246,4 +256,15 @@ a:focus {
 .modal-footer .modal-accept-button:hover {
   background-color: red;
   color: black;
+}
+
+
+/*____________________________________________*/
+/* About Page  */
+.page-text{
+  border: 1px solid #333;
+  border-radius: 5px;
+padding: 10px;
+margin:20px;
+
 }

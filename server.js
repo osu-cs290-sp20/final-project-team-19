@@ -22,6 +22,6 @@ app.get('*',function(req, res, next){
   res.status(404).sendFile(__dirname + "/public/404.html");
 });
 
-app.listen(8000, function(){
-  console.log("The server is listening on port 8000");
+app.listen(3000, function(){
+  console.log("The server is listening on port 3000");
 });
