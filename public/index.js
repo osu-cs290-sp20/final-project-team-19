@@ -48,7 +48,8 @@ function closeModal(){
 }
 //this function will accept the modal inputs, and check them for incorrect inputs
 function acceptModal(){
-let apiData;
+
+var apiData;
   var textInput = document.getElementById("modal-text-input").value;
   var numberInput=document.getElementById("modal-number-input").value;
   modal.style.display= "none";
@@ -65,7 +66,8 @@ let apiData;
     console.log("Here is the link to be requested: ", apiUrl);
 
 
-    fetch(apiUrl)
+//working api fetch code
+    const creatureData = fetch(apiUrl)
     .then(function(response) {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
@@ -74,8 +76,10 @@ let apiData;
       }
       // Examine the text in the response
       response.json().then(function(data) {
-        console.log(data);
-
+        console.log("Here is the data variable from the then function" , data);
+        // console.log(data);
+        generateCreatures(numberInput, data);
+        apiData=data;
       });
     }
   )
@@ -86,22 +90,14 @@ let apiData;
 
 
 
-  // var apiData;
-  //     fetch('https://cors-anywhere.herokuapp.com/'+ apiUrl)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data)
-  //       apiData=data;
-  //     })
-  //     .catch(error =>console.lof("Error"))
-  //
-  //     generateCreatures(numberInput, data);
+generateCreatures(numberInput, creatureData);
 }//end of the else
-generateCreatures(numberInput, apiData);
+// console.log("Here is the variable apiData: ",  apiData);
 }
 
 
 function generateCreatures(num, data){
+  console.log("Here is the data in the creature data function");
   console.log("here is the data", data);
 
 }
