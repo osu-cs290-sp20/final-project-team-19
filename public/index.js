@@ -76,10 +76,9 @@ var apiData;
       }
       // Examine the text in the response
       response.json().then(function(data) {
-        console.log("Here is the data variable from the then function" , data);
-        // console.log(data);
+
         generateCreatures(numberInput, data);
-        apiData=data;
+
       });
     }
   )
@@ -90,15 +89,23 @@ var apiData;
 
 
 
-generateCreatures(numberInput, creatureData);
+
 }//end of the else
 // console.log("Here is the variable apiData: ",  apiData);
 }
 
 
 function generateCreatures(num, data){
-  console.log("Here is the data in the creature data function");
-  console.log("here is the data", data);
+// var creatureArray = JSON.parse(data);
+console.log(Object.keys(data));
+console.log(data["hit_dice"]);
+console.log(data["hit_points"]);
+  // console.log("Here is the data in the creature data function");
+  // console.log("here is the data", data);
+  for(var i=0; i<num; i++){
+var initative= Math.floor((Math.random() * 20) + 1);
+    // creatureArray[i]=initative;
+  }
 
 }
 
