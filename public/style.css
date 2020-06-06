@@ -92,7 +92,7 @@ a:focus {
   padding-top:10px;
   position: absolute;
   left:50%;
-  top: 90%;
+  bottom: 77%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
@@ -100,9 +100,6 @@ a:focus {
 #navbar-search-button:focus {
   color: #319df6;
   outline: none;
-}
-.twit-content p {
-  margin: 0;
 }
 
 .modal-content .modal-author {
@@ -144,7 +141,7 @@ a:focus {
 Modal for creating initative */
 #modal-backdrop {
   position: fixed;
-  top: 500;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -152,7 +149,7 @@ Modal for creating initative */
   background-color: rgba(0, 0, 0, 0.85);
 }
 
-#search-monster-modal {
+#search-creature-modal {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -269,3 +266,60 @@ margin:20px;
 
 }
 /* ____________________________________________ */
+
+.creature-container {
+  margin: 50px 5%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.creature {
+  flex: 0 1 28%;
+  display: inline-block;
+  margin: 1%;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: #fff;
+  width: 25%;
+}
+
+textarea {
+  resize: none;
+}
+/*.twit-icon {
+  font-size: 24px;
+}*/
+
+.creature-content {
+  flex: 1 1 80%;
+  margin-left: 10px;
+}
+
+.creature-content p {
+  margin: 0;
+}
+
+.creature-content .creature-name {
+  margin-top: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.creature-info-container {
+  margin: 50px 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.creature-info {
+  flex: 0 1 100%;
+  display: inline-block;
+  margin: 1%;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: #fff;
+  width: 80%;
+}

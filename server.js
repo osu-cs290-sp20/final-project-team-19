@@ -1,16 +1,16 @@
 var path = require('path');
 var fs= require('fs');
- var express = require('express');
+var express = require('express');
+
+var exphbs = require('express-handlebars');
+
 var app = express();
 var http = require("http");
 
-  /* Create an HTTP server to handle responses */
+app.engine('handlebars',exphbs({defaultLayout: null }));
+app.set('view engine', 'handlebars');
 
-  // http.createServer(function(request, response) {
-  //   response.writeHead(200, {"Content-Type": "text/plain"});
-  //   response.write("Hello World");
-  //   response.end();
-  // }).listen(8888);
+
 
 
 //This logger functionality automatically serves style and index.html
