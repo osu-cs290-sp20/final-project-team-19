@@ -73,7 +73,7 @@ var apiData;
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
         response.status);
-      console.log("The requested creature: "+ textInput + " was not found in the data base");
+      inputPrompt(textInput);
         return;
       }
       // Examine the text in the response
@@ -130,12 +130,17 @@ var initative= Math.floor((Math.random() * 20) + 1);
   }
 
 }
+function inputPrompt(textInput){
+  alert("Requested creature: "+ textInput + " was not found in the dnd5eapi");
+  modal.style.display = "block";
+
+}
 //___________________________________________
 //prompts user for correct inputs
 function prompt(){
   alert("Enter values into the fields");
   modal.style.display = "block";
-  console.log("button clicked");
+
 
 }
 //functions for handling the drop down menu
