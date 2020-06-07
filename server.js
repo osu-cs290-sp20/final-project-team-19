@@ -34,7 +34,7 @@ app.get('/about',function(req, res, next){
 });
 
 app.get('*',function(req, res, next){
-  res.status(404).sendFile(__dirname + "/public/404.html");
+  res.status(200).render('404');
 });
 
 app.listen(3000, function(){
