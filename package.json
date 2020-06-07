@@ -1,7 +1,7 @@
-{
+
   "name": "final-project-team-19",
   "version": "1.0.0",
-  "description": "DND Initiative Roller\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001bia",
+  "description": "DND Initiative Roller",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/osu-cs290-sp20/final-project-team-19#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
