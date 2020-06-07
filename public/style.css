@@ -323,3 +323,12 @@ textarea {
   background-color: #fff;
   width: 80%;
 }
+select {
+    width: 29%;
+    padding: 7px 7px;
+    padding-left: 0px;
+    border: none;
+    border-radius: 5px;
+    color:red ;
+    background-color:black;
+}

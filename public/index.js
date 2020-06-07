@@ -31,20 +31,45 @@ initiativeButton.onclick = function() {
 
 }
 
+//This function takes the users input from the search bar and puts the stat block in place
 searchButton.onclick = function() {
-  var searchTerm = document.getElementById("navbar-search-input").value;
-  var newUrl=url+searchTerm;
-
-  console.log("the url is: "+ newUrl);
+  var textInput = document.getElementById("navbar-search-input").value;
+  var newUrl= createUrl(textInput, url);
   document.getElementById("navbar-search-input").value="";
+  const creatureData = fetch(newUrl)
+  .then(function(response) {
+    if (response.status !== 200) {
+      console.log('Looks like there was a problem. Status Code: ' +
+      response.status);
+    inputPrompt(textInput);
+      return;
+    }
+    // Examine the text in the response
+    response.json().then(function(data) {
+
+
+  generateCreatureStatBlock(data)
+
+    });
+  }
+)
+.then(data => apiData = data)
+.catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+
 
 }
+
 
 
 function getData(data){
   console.log(data);
 
 }
+
+
+
 // Closes the modal button
 function closeModal(){
   var modalBackdrop = document.getElementById('modal-backdrop');
@@ -55,6 +80,10 @@ function closeModal(){
   document.getElementById("modal-text-input").value= "";
   document.getElementById("modal-number-input").value= "";
 }
+
+
+
+
 //this function will accept the modal inputs, and check them for incorrect inputs
 function acceptModal(){
 error=0;
@@ -75,7 +104,7 @@ var apiData;
     console.log("Here is the link to be requested: ", apiUrl);
     var modalBackdrop = document.getElementById('modal-backdrop');
     var searchCreatureModal = document.getElementById('search-creature-modal');
-  
+
     modalBackdrop.classList.add('hidden');
     searchCreatureModal.classList.add('hidden');
 //________________________________________________________
@@ -175,7 +204,7 @@ generateCreatureStatBlock(data);
 
   for(var i=0; i<num; i++){
   var creatureHtml = Handlebars.templates.creatureTemplate(creatureContextArray[i]);
-  
+
   var creatureContainer = document.querySelector('main.creature-container');
   creatureContainer.insertAdjacentHTML('beforeend', creatureHtml);
   }
@@ -190,7 +219,7 @@ function inputPrompt(textInput){
 }
 //________________________________________________________
 //stupid name stuff
-//based on 
+//based on
 /*
 (c) by Thomas Konings
 Random Name Generator for Javascript
@@ -242,7 +271,7 @@ function generateCreatureStatBlock(data) {
   var sa = data["special_abilities"];
   var act = data["actions"];
   var lact = data["legendary_actions"];
- 
+
  console.log(lact);
  console.log(act);
  console.log(con_immune);
@@ -290,7 +319,7 @@ if (immune.length == 0){
     act: act,
     lact: lact,
  }
- 
+
  //checking if this is a new creature or a copy of one already on the sheet
  var temp=1;
  for(var i =0; i<priorInfo.length;i++){
@@ -301,11 +330,10 @@ if (immune.length == 0){
 
  if(temp==1){
       var creatureInfoHtml = Handlebars.templates.creatureInfoTemplate(creatureInfoContext);
-  
+
       var creatureContainer = document.querySelector('main.creature-info-container');
       creatureContainer.insertAdjacentHTML('beforeend', creatureInfoHtml);
       priorInfo[priorInfo.length]=creatureInfoContext;
   }
 }
 //functions for handling the drop down menu
-
