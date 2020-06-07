@@ -1,5 +1,17 @@
+var path = require('path');
+var fs= require('fs');
 var express = require('express');
+
+var exphbs = require('express-handlebars');
+
 var app = express();
+var http = require("http");
+
+app.engine('handlebars',exphbs({defaultLayout: null }));
+app.set('view engine', 'handlebars');
+
+
+
 
 //This logger functionality automatically serves style and index.html
 var logger = require('./logger');
