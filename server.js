@@ -32,6 +32,9 @@ app.get('/home',function(req, res, next){
 app.get('/about',function(req, res, next){
   res.status(200).render('about');
 });
+app.get('/spells',function(req, res, next){
+  res.status(200).render('spells');
+});
 
 app.get('*',function(req, res, next){
   res.status(200).render('404');
