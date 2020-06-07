@@ -7,7 +7,7 @@ var exphbs = require('express-handlebars');
 var app = express();
 var http = require("http");
 
-app.engine('handlebars',exphbs({defaultLayout: null }));
+app.engine('handlebars',exphbs({defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 
@@ -21,13 +21,16 @@ app.use(logger);
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res, next){
-  res.status(200).sendFile(__dirname + "/public/index.html");
+  res.status(200).render('index');
+});
+app.get('/index.html', function(req, res, next){
+  res.status(200).render('index');
 });
 app.get('/home',function(req, res, next){
-  res.status(200).sendFile(__dirname + "/public/index.html");
+  res.status(200).render('index');
 });
 app.get('/about',function(req, res, next){
-  res.status(200).sendFile(__dirname + "/public/about.html");
+  res.status(200).render('about');
 });
 
 app.get('*',function(req, res, next){
