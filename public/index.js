@@ -14,6 +14,7 @@ acceptButton[0].addEventListener('click', acceptModal);
 var searchButton = document.getElementById("navbar-search-button");
 var url= "https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/";
 
+
 var error;
 
 
@@ -259,18 +260,18 @@ function generateCreatureStatBlock(data) {
 if (immune.length == 0){
     immune="N/A";
 }
-  if (con_immune.length == 0){
+if (con_immune.length == 0){
     con_immune=[{name:"N/A"}];
  }
- if (sa.length == 0){
+if (sa.length == 0){
     sa=[{name:"N/A"}];
- }
- if (act.length == 0){
+}
+if (act.length == 0){
     act=[{name:"N/A"}];
- }
-  if (lact==null || lact.length == 0){
+}
+if (lact==null || lact.length == 0){
     lact=[{name:"N/A"}];
- }
+}
 
   var creatureInfoContext = {
     name: name,
@@ -309,3 +310,100 @@ if (immune.length == 0){
 }
 //functions for handling the drop down menu
 
+function individualSpells(data){
+    var allSpellUrls;
+
+    var spellContainer = document.getElementById("spell-container");
+    console.log((data["results"][3]["name"]));
+
+    for(var i=0; i<data["count"]; i++ ){
+        // Create anchor element. 
+        var b = document.createElement('div');
+        var a = document.createElement('a');  
+        
+        b.classList.add("link");
+        // Create the text node for anchor element. 
+        var link = document.createTextNode(data["results"][i]["name"]); 
+                  
+        // Append the text node to anchor element. 
+        a.appendChild(link);  
+                  
+        // Set the title. 
+        a.title = data["results"][i]["name"];  
+                  
+        // Set the href property. 
+        a.href = data["results"][i]["url"];  
+
+        b.appendChild(a);
+                  
+        // Append the anchor element to the body. 
+        spellContainer.appendChild(b);
+        
+        
+	}
+
+
+}
+
+
+
+function spellAPICall(){
+
+    var spellurl = "https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/spells/";
+    console.log(url);
+    console.log(spellurl);
+    const spellData = fetch(spellurl).then(function(response) {
+        if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' +
+            response.status);
+            inputPrompt(textInput);
+            return;
+        }
+        // Examine the text in the response
+        response.json().then(function(data) {
+        //getting all the spells
+         individualSpells(data);   
+        });
+    }
+)
+  .then(data => apiData = data)
+  .catch(function(err) {
+      console.log('Fetch Error :-S', err);
+    });
+}
+
+function generateSpellBlock(data){
+    var name = data["name"];
+    var desc = data["desc"];
+    var higher_level = data["higher_level"];
+    var range = data["range"];
+    var components = data["components"];
+    var material = data["material"];
+    var ritual = data["ritual"];
+    var duration = data["duration"];
+    var concentration = data["concentration"];
+    var casting_time = data["time"];
+    var level = data["level"];
+    var school = data["school"];
+    var classes = data["classes"];
+    var subclasses = data["subclasses"];
+
+    var spellInfoContext = {
+     name:name,
+     desc:desc,
+     higher_level:higher_level,
+     range:range,
+     components:components,
+     material:material,
+     ritual:ritual,
+     duration:duration,
+     concentration:concentration,
+     time:time,
+     level:level,
+     school:school,
+     classes:classes,
+     subclasses:subclasses
+	}
+      var creatureContainer = document.querySelector('main.creature-info-container');
+      creatureContainer.insertAdjacentHTML('beforeend',spellInfoContext);
+}
