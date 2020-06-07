@@ -1,0 +1,86 @@
+﻿<article class="spell-box">
+    <div class="spell-content">
+        <h4 class="spell-name">
+            {{name}}
+        </h4>
+
+        <div class="class-content">
+
+            <div class="description">
+                <p class="spell-info">Description: </p>
+                <p class="spell-item">
+                    <span>{{desc}}</span>
+                    <span> {{higher}}</span>
+                </p>
+            </div>
+            <div class="range">
+                <span class="spell-info">Range: </span>
+                <span class="spell-item">{{range}}</span>
+            </div>
+
+            <div>
+                <span class="spell-info">Components: </span>
+                <p class="spell-item">
+                    {{#each components}}
+                    {{name}},
+                    {{/each}} 
+                </p>
+            </div>
+
+            <div class="materials">
+                <span class="spell-info">Material: </span>
+                <span class="spell-item">{{material}}</span>
+            </div>
+            {{#if ritual}}
+            <div>
+                <span class="spell-info">Ritual spell </span>
+            </div>
+            {{/if}}
+            <div>
+                <span class="spell-info">Duration: </span>
+                <span> {{duration}}</span>
+            </div>
+            {{#if concentration}}
+            <div>
+                <span class="spell-info">Requires concentration: </span>
+
+            </div>
+            {{/if}}
+
+            <div class="casting-time">
+                <span class="spell-info">Casting time: </span>
+                <span class="spell-item">{{time}}</span>
+            </div>
+            <div>
+                <span class="spell-info">Level: </span>
+                <span class="spell-item">{{level}}</span>
+            </div>
+
+            <div>
+                <span class="spell-info">School: </span>
+                <p class="spell-item">
+                    {{#each school}}
+                    {{name}}
+                    {{/each}}
+                </p>
+            </div>
+            <div>
+                <span class="spell-info">Classes: </span>
+                <p class="spell-item">
+                    {{#each classes}}
+                    {{name}}
+                    {{/each}}
+                </p>
+            </div>
+            <div>
+                <span class="spell-info">Subclasses: </span>
+                <p class="spell-item">
+                    {{#each subclasses}}
+                    {{name}}
+                    {{/each}}
+                </p>
+            </div>
+
+
+        </div>
+</article>
