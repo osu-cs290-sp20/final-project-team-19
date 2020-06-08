@@ -32,20 +32,63 @@ var error;
 
 }*/
 
+//___________________________________________
+//This function takes the users input from the search bar and puts the stat block in place
 searchButton.onclick = function() {
-  var searchTerm = document.getElementById("navbar-search-input").value;
-  var newUrl=url+searchTerm;
 
-  console.log("the url is: "+ newUrl);
-  document.getElementById("navbar-search-input").value="";
+  var textInput = document.getElementById("navbar-search-input").value;
+  console.log("here is the users search query input: ", textInput);
+  var newUrl= createUrl(textInput, url);
+//get the search query from the drop down menu
+  var searchQuery = document.getElementById("search-query");
+// access the option selected by the user
+  var searchField=(searchQuery.options[searchQuery.selectedIndex].value);
+//check the users input and generate the proper link for the specified field
+    if(searchField =="Monsters"){
+      var creatureUrl=createUrl(textInput, url);
+      const creatureData = fetch(creatureUrl)
+      .then(function(response) {
+        if (response.status !== 200) {
+          console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+          inputPrompt(textInput);
+          return;
+        }
+        // Examine the text in the response
+        response.json().then(function(data) {
 
+
+          generateCreatureStatBlock(data);
+
+        });
+      }
+    )
+    .then(data => apiData = data)
+    .catch(function(err) {
+      console.log('Fetch Error :-S', err);
+    });
+      console.log("Here is the creatureURl: ", creatureUrl);
+  }else if(searchField== "Equipment"){
+
+    console.log("here is the users search query input: ", textInput);
+  }else if(searchField== "Spells"){
+
+    console.log("here is the users search query input: ", textInput);
+  }else{
+    var textInput=searchField;
+    inputPrompt(textInput);
+  }
 }
+//___________________________________________
 
 
 function getData(data){
   console.log(data);
 
 }
+
+
+
 // Closes the modal button
 function closeModal(){
   var modalBackdrop = document.getElementById('modal-backdrop');
@@ -56,10 +99,14 @@ function closeModal(){
   document.getElementById("modal-text-input").value= "";
   document.getElementById("modal-number-input").value= "";
 }
+
+
+
+
 //this function will accept the modal inputs, and check them for incorrect inputs
 function acceptModal(){
-error=0;
-var apiData;
+  error=0;
+  var apiData;
   var textInput = document.getElementById("modal-text-input").value;
   var numberInput=document.getElementById("modal-number-input").value;
 
@@ -76,18 +123,18 @@ var apiData;
     console.log("Here is the link to be requested: ", apiUrl);
     var modalBackdrop = document.getElementById('modal-backdrop');
     var searchCreatureModal = document.getElementById('search-creature-modal');
-  
+
     modalBackdrop.classList.add('hidden');
     searchCreatureModal.classList.add('hidden');
-//________________________________________________________
-//working api fetch code
+    //________________________________________________________
+    //working api fetch code
 
     const creatureData = fetch(apiUrl)
     .then(function(response) {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
         response.status);
-      inputPrompt(textInput);
+        inputPrompt(textInput);
         return;
       }
       // Examine the text in the response
@@ -101,8 +148,8 @@ var apiData;
   )
   .then(data => apiData = data)
   .catch(function(err) {
-      console.log('Fetch Error :-S', err);
-    });
+    console.log('Fetch Error :-S', err);
+  });
 
 
 
@@ -114,15 +161,15 @@ var apiData;
 //This function will take the users input, remove the spaces and make it lower case
 //________________________________________________________
 function createUrl(textInput, url){
-// make input lowercase
-var textInputLower = textInput.toLowerCase();
+  // make input lowercase
+  var textInputLower = textInput.toLowerCase();
 
-//replace all of the spaces with dashes
-var newUrl = textInputLower.replace(/ /g, "-");
-//combine the global url to the search query
-var finalUrl= url+newUrl;
-//return the final url to the fetch statement
-return finalUrl;
+  //replace all of the spaces with dashes
+  var newUrl = textInputLower.replace(/ /g, "-");
+  //combine the global url to the search query
+  var finalUrl= url+newUrl;
+  //return the final url to the fetch statement
+  return finalUrl;
 
 }
 
@@ -131,42 +178,42 @@ return finalUrl;
 //This function will take the json data from the generateCreatures and show the important information
 //________________________________________________________
 function generateCreatures(num, data){
-// var creatureArray = JSON.parse(data);
-console.log(Object.keys(data));
-console.log(data["hit_dice"]);
-var hitPoints=data["hit_points"];
-var armorClass=data["armor_class"];
-var creatureName = data["name"];
-console.log("HERE ARE THE HIT POINTS FROM THE OBJECT: ", hitPoints);
+  // var creatureArray = JSON.parse(data);
+  console.log(Object.keys(data));
+  console.log(data["hit_dice"]);
+  var hitPoints=data["hit_points"];
+  var armorClass=data["armor_class"];
+  var creatureName = data["name"];
+  console.log("HERE ARE THE HIT POINTS FROM THE OBJECT: ", hitPoints);
   // console.log("Here is the data in the creature data function");
   // console.log("here is the data", data);
   //for(var i=0; i<num; i++){
-//var initative= Math.floor((Math.random() * 20) + 1);
-    // creatureArray[i]=initative;
+  //var initative= Math.floor((Math.random() * 20) + 1);
+  // creatureArray[i]=initative;
   //}
   var dex = data["dexterity"];
   var creatureContextArray = Array(num);
 
-//Creating Monster Stat block
-generateCreatureStatBlock(data);
-//done with that
+  //Creating Monster Stat block
+  generateCreatureStatBlock(data);
+  //done with that
 
   for(var i=0; i<num; i++){
-   var random = Math.floor((Math.random()*20)+1);
-   var init =Math.floor(random + ((dex-10)/2));
+    var random = Math.floor((Math.random()*20)+1);
+    var init =Math.floor(random + ((dex-10)/2));
 
-   //stupid name that can be taken out
-   var sillyname=generateName();
+    //stupid name that can be taken out
+    var sillyname=generateName();
 
-   var creatureContext = {
-    initiative: init,
-    armor_class: armorClass,
-    hit_points: hitPoints,
-    name: creatureName,
-    sname:sillyname
+    var creatureContext = {
+      initiative: init,
+      armor_class: armorClass,
+      hit_points: hitPoints,
+      name: creatureName,
+      sname:sillyname
 
-   }
-   creatureContextArray[i] = creatureContext;
+    }
+    creatureContextArray[i] = creatureContext;
   }
 
   creatureContextArray.sort(function(a,b) {
@@ -175,22 +222,23 @@ generateCreatureStatBlock(data);
   creatureContextArray.reverse();
 
   for(var i=0; i<num; i++){
-  var creatureHtml = Handlebars.templates.creatureTemplate(creatureContextArray[i]);
-  
-  var creatureContainer = document.querySelector('main.creature-container');
-  creatureContainer.insertAdjacentHTML('beforeend', creatureHtml);
+    var creatureHtml = Handlebars.templates.creatureTemplate(creatureContextArray[i]);
+
+    var creatureContainer = document.querySelector('main.creature-container');
+    creatureContainer.insertAdjacentHTML('beforeend', creatureHtml);
   }
 }
 
 
 
 function inputPrompt(textInput){
-  alert("Requested creature: "+ textInput + " was not found in the dnd5eapi");
+  alert("Your request for: "+ textInput + " was not found in the dnd5eapi");
   modal.style.display = "block";
 
 }
 //________________________________________________________
 //stupid name stuff
+
 //based on 
 /*
 (c) by Thomas Konings
@@ -209,6 +257,7 @@ function generateName(){
 	var name1 = ["Jack","Eragon","Samwise","Frodo","Gandalf","Gimli","Aragorn","Legolas","Zaque","Zacckk","Zacck","ZACK","Zakk","Zak","Rob Hess","Liam","Noah","William","James","Oliver","Benjamin","Elijah","Lucas","Mason","Logan","Emma","Olivia","Ava","Isabella","Sophia","Charlotte","Mia","Amelia","Harper","Evelyn","Piers Borngasser","Ian Bailey","Tyson Fairhurst","Ethan Hunter","Jeff","Zach","Zack","Zacc","Zachary","Bob","Joe","Brian","THE DUDE","Your Worst Enemy","Ezekiel","Michael","David","John","James","Robert","Mark","William","Richard","Thomas","Jeffrey","Steven","Joseph","Timothy","Kevin","Scott","Brian","Charles","Paul","Daniel","Christopher","Kenneth","Anthony","Gregory","Ronald","Donald","Gary","Stephen","Eric","Edward","Douglas","Todd","Patrick","Keith","Larry","Matthew","Terry","Andrew","Dennis","Randy","Jerry","Peter","Frank","Craig","Raymond","Jeffery","Bruce","Rodney","Mike","Roger","Tony","Ricky","Steve","Jeff","Troy","Alan","Carl","Danny","Russell","Chris","Bryan","Gerald","Wayne","Joe","Randall","Lawrence","Dale","Phillip","Johnny","Vincent","Martin","Bradley","Billy","Glenn","Shawn","Jonathan","Jimmy","Sean","Curtis","Barry","Bobby","Walter","Jon","Philip","Samuel","Jay","Jason","Dean","Jose","Tim","Roy","Willie","Arthur","Darryl","Henry","Darrell","Allen","Victor","Harold","Greg"]
 	var name = capFirst(name1[getRandomInt(0, name1.length)]);
 	return name;
+
 
 }
 
@@ -243,6 +292,7 @@ function generateCreatureStatBlock(data) {
   var sa = data["special_abilities"];
   var act = data["actions"];
   var lact = data["legendary_actions"];
+
   var hpd = data["hit_dice"];
  
  if (prof.length == 0){
@@ -270,7 +320,6 @@ if (immune.length == 0){
   if (lact==null || lact.length == 0){
     lact=[{name:"N/A"}];
  }
-
 
   var creatureInfoContext = {
     name: name,
@@ -485,3 +534,4 @@ function generateItemBlock(data){
     var creatureContainer = document.querySelector('main.creature-info-container');
     creatureContainer.insertAdjacentHTML('beforeend',itemInfoContext);
 }
+
