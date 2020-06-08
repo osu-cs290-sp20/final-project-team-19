@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DND Initiative Roller</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" crossorigin="anonymous">
+
+
+  <link rel="stylesheet" href="style.css" media="screen">
+
+  <script src="index.js" charset="utf-8" defer></script>
+  <script src="creatureTemplate.js" charset="utf-8" defer></script>
+  <script src="creatureInfoTemplate.js" charset="utf-8" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+
+
+</head>
+<body>
+  <header>
+    <a href="#"><h1 class="site-title"> DND Initiative Roller</h1></a>
+    <nav class="navbar">
+      <ul class="navlist">
+        <li class="navitem navlink active"><a href="#">Home</a></li>
+        <li class="navitem navlink"><a href="#">Classes</a></li>
+        <li class="navitem navlink"><a href="#">Items</a></li>
+        <li class="navitem navlink"><a href="#">Spells</a></li>
+        <li class="navitem navlink"><a href="/about">About</a></li>
+        <li class="navbar-search navitem">
+          <select id="search-query">
+            <option > Spells</option>
+            <option > Monsters</option>
+            <option >Equipment</option>
+          </select>
+          <input type="text" id="navbar-search-input" placeholder="Search...">
+          <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- <button type="button" id="create-initiative-button"></button> -->
+  <div class="button-position">
+    <button class="btn create-initiative" id="create-initiative-button">Roll Initiative</button>
+  </div>
+
+  <main class="creature-info-container">
+
+  </main>
+  <main class="body-text creature-container">
+
+
+
+
+  </main>
+
+  <div id="modal-backdrop" class="hidden"></div>
+  <div id="search-creature-modal" class="hidden">
+    <div class="modal-dialog">
+
+      <div class="modal-header">
+        <h2>Search for a Creature</h2>
+        <button type="button" class="modal-close-button">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-input-element">
+          <label for="modal-text-input"> Enter a Creature</label>
+          <textarea id="modal-text-input"></textarea>
+        </div>
+
+        <div class="modal-input-element">
+          <label for="modal-attribution-input">Number of Creature(s)</label>
+          <textarea id="modal-number-input"></textarea>
+
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="modal-cancel-button">Cancel</button>
+        <button type="button" class="modal-accept-button">Create Initiative</button>
+      </div>
+
+
+
+    </div>
+  </div>
+
+</body>
+</html>

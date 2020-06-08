@@ -1,0 +1,45 @@
+<article class="equipment">
+
+    <div class="equipment-content">
+        <p class="equipment-name">
+          <a href="#">{{name}} </a>
+        </p>
+
+        <p class="equipment-content " >
+          Cost:
+          {{equipment_cost}}
+        </p>
+        <p>
+          Equipment Category:
+            {{equipment_category}}
+        </p>
+        <p class="equipment-content " >
+          Damage:
+          {{#each damage}}
+          <p>
+              {{damage_dice}}
+              {{damage_bonus}}
+              {{#each damage_type}}
+                {{name}}
+              {{/each}}
+          </p>
+          {{/each}}
+        </p>
+        <p>
+          Range:
+            {{range}}
+        </p>
+        <p>
+          Properties:
+            {{#each properties}}
+            {{name}}
+            {{/each}}
+        </p>
+        <p>
+          Description:
+            {{desc}}
+
+        </p>
+
+    </div>
+</article>
