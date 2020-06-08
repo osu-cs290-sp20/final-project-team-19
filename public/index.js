@@ -1,15 +1,15 @@
 var modal = document.getElementById("search-creature-modal");
 
-var initiativeButton= document.getElementById("create-initiative-button");
+//var initiativeButton= document.getElementById("create-initiative-button");
 
-var closeButton= document.getElementsByClassName("modal-close-button");
+/*var closeButton= document.getElementsByClassName("modal-close-button");
 closeButton[0].addEventListener('click', closeModal);
 
 var cancelButton= document.getElementsByClassName("modal-cancel-button");
 cancelButton[0].addEventListener('click', closeModal);
 
 var acceptButton= document.getElementsByClassName("modal-accept-button");
-acceptButton[0].addEventListener('click', acceptModal);
+acceptButton[0].addEventListener('click', acceptModal);*/
 
 var searchButton = document.getElementById("navbar-search-button");
 var url= "https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/";
@@ -19,7 +19,7 @@ var error;
 
 
 
-initiativeButton.onclick = function() {
+/*initiativeButton.onclick = function() {
   var modalBackdrop = document.getElementById('modal-backdrop');
   var searchCreatureModal = document.getElementById('search-creature-modal');
 
@@ -30,7 +30,7 @@ initiativeButton.onclick = function() {
   document.getElementById("modal-text-input").value= "";
   document.getElementById("modal-number-input").value= "";
 
-}
+}*/
 
 searchButton.onclick = function() {
   var searchTerm = document.getElementById("navbar-search-input").value;
@@ -243,10 +243,8 @@ function generateCreatureStatBlock(data) {
   var sa = data["special_abilities"];
   var act = data["actions"];
   var lact = data["legendary_actions"];
+  var hpd = data["hit_dice"];
  
- console.log(lact);
- console.log(act);
- console.log(con_immune);
  if (prof.length == 0){
     prof=[{name:"N/A"}];
  }
@@ -260,18 +258,19 @@ function generateCreatureStatBlock(data) {
 if (immune.length == 0){
     immune="N/A";
 }
-if (con_immune.length == 0){
+  if (con_immune.length == 0){
     con_immune=[{name:"N/A"}];
  }
-if (sa.length == 0){
-    sa=[{name:"N/A"}];
-}
-if (act.length == 0){
+ //if (sa.length == 0){
+   // sa=[{name:"N/A"}];
+ //}
+ if (act.length == 0){
     act=[{name:"N/A"}];
-}
-if (lact==null || lact.length == 0){
+ }
+  if (lact==null || lact.length == 0){
     lact=[{name:"N/A"}];
-}
+ }
+
 
   var creatureInfoContext = {
     name: name,
@@ -290,6 +289,7 @@ if (lact==null || lact.length == 0){
     sa: sa,
     act: act,
     lact: lact,
+    hpd: hpd
  }
  
  //checking if this is a new creature or a copy of one already on the sheet

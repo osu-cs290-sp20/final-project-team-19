@@ -430,13 +430,19 @@ a:focus {
 
 /* this is used to find the center of the page for centering the buttons */
 .button-position {
-  margin: 0;
+
+  position: relative;
+ /* margin: 0;
   padding-top:10px;
-  position: absolute;
-  left:50%;
-  bottom: 77%;
+  position: relative;
+  left:100px;
+  bottom: 200px;
   -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);*/
+}
+
+.button-container {
+  padding-left: 45%;
 }
 
 #navbar-search-button:focus {
@@ -665,6 +671,7 @@ textarea {
   background-color: #fff;
   width: 80%;
 }
+
 .link{
     padding:5px;
     margin: 5px;
@@ -672,4 +679,13 @@ textarea {
 
     border: 1px solid black;
     border-radius: 2px;
+}
+
+.important {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.less-important {
+  font-style: italic;
 }

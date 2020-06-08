@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DND Initiative Roller</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="style.css" media="screen">
+
+   <script src="index.js" charset="utf-8" defer></script>
+   <script src="creatureTemplate.js" charset="utf-8" defer></script>
+   <script src="creatureInfoTemplate.js" charset="utf-8" defer></script>
+   <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+
+
+  </head>
+  <body>
+  <header>
+     <a href="#"><h1 class="site-title"> DND Initiative Roller</h1></a>
+    <nav class="navbar">
+          <ul class="navlist">
+            <li class="navitem navlink active"><a href="/home">Home</a></li>
+            <li class="navitem navlink"><a href="#">Classes</a></li>
+            <li class="navitem navlink"><a href="/items">Items</a></li>
+            <li class="navitem navlink"><a href="/spells">Spells</a></li>
+            <li class="navitem navlink"><a href="/about">About</a></li>
+            <li class="navbar-search navitem">
+              <input type="text" id="navbar-search-input" placeholder="Search...">
+              <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
+            </li>
+          </ul>
+    </nav>
+  </header>
+
+    {{{body}}}
+
+    </body>
+</html>
+

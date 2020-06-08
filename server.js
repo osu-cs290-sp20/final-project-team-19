@@ -7,7 +7,7 @@ var exphbs = require('express-handlebars');
 var app = express();
 var http = require("http");
 
-app.engine('handlebars',exphbs({defaultLayout: null }));
+app.engine('handlebars',exphbs({defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 
@@ -21,17 +21,23 @@ app.use(logger);
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res, next){
-  res.status(200).sendFile(__dirname + "/public/index.html");
+  res.status(200).render('index');
+});
+app.get('/index.html', function(req, res, next){
+  res.status(200).render('index');
 });
 app.get('/home',function(req, res, next){
-  res.status(200).sendFile(__dirname + "/public/index.html");
+  res.status(200).render('index');
 });
 app.get('/about',function(req, res, next){
-  res.status(200).sendFile(__dirname + "/public/about.html");
+  res.status(200).render('about');
+});
+app.get('/spells',function(req, res, next){
+  res.status(200).render('spells');
 });
 
 app.get('*',function(req, res, next){
-  res.status(404).sendFile(__dirname + "/public/404.html");
+  res.status(200).render('404');
 });
 
 app.listen(3000, function(){
