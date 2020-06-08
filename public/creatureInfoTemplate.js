@@ -49,7 +49,7 @@ templates['creatureInfoTemplate'] = template({"1":function(container,depth0,help
     + alias4(((helper = (helper = lookupProperty(helpers,"name") || (depth0 != null ? lookupProperty(depth0,"name") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data,"loc":{"start":{"line":59,"column":43},"end":{"line":59,"column":51}}}) : helper)))
     + "</span>: "
     + alias4(((helper = (helper = lookupProperty(helpers,"desc") || (depth0 != null ? lookupProperty(depth0,"desc") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"desc","hash":{},"data":data,"loc":{"start":{"line":59,"column":60},"end":{"line":59,"column":68}}}) : helper)))
-    + "\r\n<<<<<<< HEAD\r\n              </p>\r\n=======\r\n          </p>\r\n>>>>>>> 3b4344bee30426ef3eddd6c2fda621b1f586ee37\r\n";
+    + "\r\n\r\n              </p>\r\n\r\n          </p>\r\n\r\n";
 },"9":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
