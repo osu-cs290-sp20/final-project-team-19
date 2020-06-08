@@ -407,3 +407,81 @@ function generateSpellBlock(data){
       var creatureContainer = document.querySelector('main.creature-info-container');
       creatureContainer.insertAdjacentHTML('beforeend',spellInfoContext);
 }
+
+
+// again with items
+
+function generateItemBlock(data){
+    var name = data["name"];
+    var desc = data["desc"];
+    var equipment_cat = data["equipment_category"];
+    var gear_cat= data["gear_category"];
+    var vehicle_cat = data["vehicle_category"];
+    var weapon_cat = data["weapon_category"];
+    var weapon_range = data["weapon_range"];
+    var category_range = data["category_range"];
+    var armor_class_base = data["armor_class"]["base"];
+    var armor_class_dex = data["armor_class"]["dex_bonus"];
+    var armor_class_max_bonus = data["armor_class"]["max_bonus"];
+    var str_min = data["str_minimum"];
+    var stealth = data["stealth_disadvantage"];
+    var contents = data["contents"];
+    var quantity = data["cost"]["quantity"]; 
+    var unit = data["cost"]["unit"];
+    var damage_dice = data["damage"]["damage_dice"];
+    var damage_bonus = data["damage"]["damage_bonus"];
+    var damage_type = data["damage"]["damage_type"];
+    var range_normal = data["range"]["normal"];
+    var range_long = data["range"]["long"];
+    var properties = data["properties"];
+    var 2h_damage_dice = data["2h_damage"]["damage_dice"];
+    var 2h_damage_bonus = data["2h_damage"]["damage_bonus"];
+    var 2h_damage_type = data["2h_damage"]["damage_type"];    
+    var throw_range_normal = data["throw_range"]["normal"];
+    var throw_range_long = data["throw_range"]["long"];
+    var speed_quantity = data["speed"]["quantity"]; 
+    var speed_unit = data["speed"]["unit"];
+    var capacity = data["capacity"];
+
+    var new_contents;
+    for(var i =0; i<contents.length();i++){
+        new_contents=contents[i][item_url].slice(15);
+        n=contents[i][item_url]=new_contents.charAt(0).toUpperCase() + new_contents.slice(1)
+    }
+   
+
+    var itemInfoContext = {
+     name:name,
+     desc:desc,
+     equipment_cat:equipment_cat,
+     gear_cat:gear_cat,
+     vehicle_cat:vehicle_cat,
+     weapon_cat:weapon_cat,
+     weapon_range:weapon_range,
+     category_range:category_range,
+     armor_class_base:armor_class_base,
+     armor_class_dex:armor_class_dex,
+     armor_class_max_bonus:armor_class_max_bonus,
+     str_min:str_min,
+     stealth:stealth,
+     contents:contents,
+     quantity:quantity,
+     unit:unit,
+     damage_dice:damage_dice,
+     damage_bonus:damage_bonus,
+     damage_type:damage_type,
+     range_normal:range_normal,
+     range_long:range_long,
+     properties:properties,
+     2h_damage_dice:2h_damage_dice,
+     2h_damage_bonus:2h_damage_bonus,
+     2h_damage_type:2h_damage_type,
+     throw_range_normal:throw_range_normal,
+     throw_range_long:throw_range_long,
+     speed_quantity:speed_quantity,
+     speed_unit:speed_unit,
+     capacity:capacity
+	}
+    var creatureContainer = document.querySelector('main.creature-info-container');
+    creatureContainer.insertAdjacentHTML('beforeend',itemInfoContext);
+}
