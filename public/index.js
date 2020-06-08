@@ -1,15 +1,15 @@
 var modal = document.getElementById("search-creature-modal");
 
-var initiativeButton= document.getElementById("create-initiative-button");
-
-var closeButton= document.getElementsByClassName("modal-close-button");
-closeButton[0].addEventListener('click', closeModal);
-
-var cancelButton= document.getElementsByClassName("modal-cancel-button");
-cancelButton[0].addEventListener('click', closeModal);
-
-var acceptButton= document.getElementsByClassName("modal-accept-button");
-acceptButton[0].addEventListener('click', acceptModal);
+// var initiativeButton= document.getElementById("create-initiative-button");
+//
+// var closeButton= document.getElementsByClassName("modal-close-button");
+// closeButton[0].addEventListener('click', closeModal);
+//
+// var cancelButton= document.getElementsByClassName("modal-cancel-button");
+// cancelButton[0].addEventListener('click', closeModal);
+//
+// var acceptButton= document.getElementsByClassName("modal-accept-button");
+// acceptButton[0].addEventListener('click', acceptModal);
 
 var searchButton = document.getElementById("navbar-search-button");
 var url= "https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/";
@@ -18,18 +18,18 @@ var error;
 
 
 
-initiativeButton.onclick = function() {
-  var modalBackdrop = document.getElementById('modal-backdrop');
-  var searchCreatureModal = document.getElementById('search-creature-modal');
-
-  modalBackdrop.classList.remove('hidden');
-  searchCreatureModal.classList.remove('hidden');
-
-
-  document.getElementById("modal-text-input").value= "";
-  document.getElementById("modal-number-input").value= "";
-
-}
+// initiativeButton.onclick = function() {
+//   var modalBackdrop = document.getElementById('modal-backdrop');
+//   var searchCreatureModal = document.getElementById('search-creature-modal');
+//
+//   modalBackdrop.classList.remove('hidden');
+//   searchCreatureModal.classList.remove('hidden');
+//
+//
+//   document.getElementById("modal-text-input").value= "";
+//   document.getElementById("modal-number-input").value= "";
+//
+// }
 
 //___________________________________________
 //This function takes the users input from the search bar and puts the stat block in place
@@ -441,3 +441,182 @@ function generateCreatureStatBlock(data) {
   }
 }
 //functions for handling the drop down menu
+//functions for handling the drop down menu
+
+function individualSpells(data){
+    var allSpellUrls;
+
+    var spellContainer = document.getElementById("spell-container");
+
+    console.log((data["results"][3]["name"]));
+
+    for(var i=0; i<data["count"]; i++ ){
+        // Create anchor element.
+        var b = document.createElement('div');
+        var a = document.createElement('a');
+
+        b.classList.add("link");
+        // Create the text node for anchor element.
+        var link = document.createTextNode(data["results"][i]["name"]);
+
+        // Append the text node to anchor element.
+        a.appendChild(link);
+
+        // Set the title.
+        a.title = data["results"][i]["name"];
+
+        // Set the href property.
+        a.href = data["results"][i]["url"];
+
+        b.appendChild(a);
+
+        // Append the anchor element to the body.
+        spellContainer.appendChild(b);
+
+
+	}
+
+
+}
+
+
+
+function spellAPICall(){
+
+    var spellurl = "https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/spells/";
+    console.log(url);
+    console.log(spellurl);
+    const spellData = fetch(spellurl).then(function(response) {
+        if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' +
+            response.status);
+            inputPrompt(textInput);
+            return;
+        }
+        // Examine the text in the response
+        response.json().then(function(data) {
+        //getting all the spells
+         individualSpells(data);
+        });
+    }
+)
+  .then(data => apiData = data)
+  .catch(function(err) {
+      console.log('Fetch Error :-S', err);
+    });
+}
+
+function generateSpellBlock(data){
+  console.log("IN the spell block");
+    var name = data["name"];
+    var desc = data["desc"];
+    var higher_level = data["higher_level"];
+    var range = data["range"];
+    var components = data["components"];
+    var material = data["material"];
+    var ritual = data["ritual"];
+    var duration = data["duration"];
+    var concentration = data["concentration"];
+    var casting_time = data["time"];
+    var level = data["level"];
+    var school = data["school"];
+    var classes = data["classes"];
+    var subclasses = data["subclasses"];
+
+    var spellInfoContext = {
+     name:name,
+     desc:desc,
+     higher_level:higher_level,
+     range:range,
+     components:components,
+     material:material,
+     ritual:ritual,
+     duration:duration,
+     concentration:concentration,
+     time:time,
+     level:level,
+     school:school,
+     classes:classes,
+     subclasses:subclasses
+	}
+      var creatureContainer = document.querySelector('main.spell-container');
+      creatureContainer.insertAdjacentHTML('beforeend',spellInfoContext);
+}
+
+
+// again with items
+
+function generateItemBlock(data){
+    var name = data["name"];
+    var desc = data["desc"];
+    var equipment_cat = data["equipment_category"];
+    var gear_cat= data["gear_category"];
+    var vehicle_cat = data["vehicle_category"];
+    var weapon_cat = data["weapon_category"];
+    var weapon_range = data["weapon_range"];
+    var category_range = data["category_range"];
+    var armor_class_base = data["armor_class"]["base"];
+    var armor_class_dex = data["armor_class"]["dex_bonus"];
+    var armor_class_max_bonus = data["armor_class"]["max_bonus"];
+    var str_min = data["str_minimum"];
+    var stealth = data["stealth_disadvantage"];
+    var contents = data["contents"];
+    var quantity = data["cost"]["quantity"];
+    var unit = data["cost"]["unit"];
+    var damage_dice = data["damage"]["damage_dice"];
+    var damage_bonus = data["damage"]["damage_bonus"];
+    var damage_type = data["damage"]["damage_type"];
+    var range_normal = data["range"]["normal"];
+    var range_long = data["range"]["long"];
+    var properties = data["properties"];
+    var th_damage_dice = data["2h_damage"]["damage_dice"];
+    var th_damage_bonus = data["2h_damage"]["damage_bonus"];
+    var th_damage_type = data["2h_damage"]["damage_type"];
+    var throw_range_normal = data["throw_range"]["normal"];
+    var throw_range_long = data["throw_range"]["long"];
+    var speed_quantity = data["speed"]["quantity"];
+    var speed_unit = data["speed"]["unit"];
+    var capacity = data["capacity"];
+
+    var new_contents;
+    for(var i =0; i<contents.length();i++){
+        new_contents=contents[i][item_url].slice(15);
+        n=contents[i][item_url]=new_contents.charAt(0).toUpperCase() + new_contents.slice(1)
+    }
+
+
+    var itemInfoContext = {
+     name:name,
+     desc:desc,
+     equipment_cat:equipment_cat,
+     gear_cat:gear_cat,
+     vehicle_cat:vehicle_cat,
+     weapon_cat:weapon_cat,
+     weapon_range:weapon_range,
+     category_range:category_range,
+     armor_class_base:armor_class_base,
+     armor_class_dex:armor_class_dex,
+     armor_class_max_bonus:armor_class_max_bonus,
+     str_min:str_min,
+     stealth:stealth,
+     contents:contents,
+     quantity:quantity,
+     unit:unit,
+     damage_dice:damage_dice,
+     damage_bonus:damage_bonus,
+     damage_type:damage_type,
+     range_normal:range_normal,
+     range_long:range_long,
+     properties:properties,
+     th_damage_dice:th_damage_dice,
+     th_damage_bonus:th_damage_bonus,
+     th_damage_type:th_damage_type,
+     throw_range_normal:throw_range_normal,
+     throw_range_long:throw_range_long,
+     speed_quantity:speed_quantity,
+     speed_unit:speed_unit,
+     capacity:capacity
+	}
+    var creatureContainer = document.querySelector('main.spell-container');
+    creatureContainer.insertAdjacentHTML('beforeend',itemInfoContext);
+}
