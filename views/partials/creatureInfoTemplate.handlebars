@@ -1,11 +1,11 @@
 <article class="creature creature-info">
-    
+
     <div class="creature-content">
         <p class="creature-name">
           <span class = "important">{{name}}</span>
         </p>
         <span class = "important">
-          Challenge Rating: 
+          Challenge Rating:
         </span>
         <span>
         {{CR}}
@@ -57,12 +57,11 @@
           {{#each act}}
           <p>
             <span class = "less-important">{{name}}</span>: {{desc}}
-              {{attack_bonus}}
-          </p>
+              </p>
           {{/each}}
         </p>
         <p class="creature-content leg-actions" >
-          <span class = "important">Legendary Actions:</span> 
+          <span class = "important">Legendary Actions:</span>
           {{#each lact}}
           <p>
             <span class = "less-important">{{name}}</span>: {{desc}}

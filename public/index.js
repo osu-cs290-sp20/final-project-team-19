@@ -38,45 +38,45 @@ searchButton.onclick = function() {
   var textInput = document.getElementById("navbar-search-input").value;
   console.log("here is the users search query input: ", textInput);
   var newUrl= createUrl(textInput, url);
-//get the search query from the drop down menu
+  //get the search query from the drop down menu
   var searchQuery = document.getElementById("search-query");
-// access the option selected by the user
+  // access the option selected by the user
   var searchField=(searchQuery.options[searchQuery.selectedIndex].value);
-//check the users input and generate the proper link for the specified field
-    if(searchField =="Monsters"){
-      var creatureUrl=createUrl(textInput, url);
-      const creatureData = fetch(creatureUrl)
-      .then(function(response) {
-        if (response.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' +
-          response.status);
-          inputPrompt(textInput);
-          return;
-        }
-        // Examine the text in the response
-        response.json().then(function(data) {
-
-
-          generateCreatureStatBlock(data);
-
-        });
+  //check the users input and generate the proper link for the specified field
+  if(searchField =="Monsters"){
+    var creatureUrl=createUrl(textInput, url);
+    const creatureData = fetch(creatureUrl)
+    .then(function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+        response.status);
+        inputPrompt(textInput);
+        return;
       }
-    )
-    .then(data => apiData = data)
-    .catch(function(err) {
-      console.log('Fetch Error :-S', err);
-    });
-      console.log("Here is the creatureURl: ", creatureUrl);
-  }else if(searchField== "Equipment"){
+      // Examine the text in the response
+      response.json().then(function(data) {
 
-    generateEquipmentLink(textInput);
-  }else if(searchField== "Spells"){
 
-    console.log("here is the users search query input: ", textInput);
-  }else{
-    var textInput=searchField;
-    inputPrompt(textInput);
-  }
+        generateCreatureStatBlock(data);
+
+      });
+    }
+  )
+  .then(data => apiData = data)
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+  console.log("Here is the creatureURl: ", creatureUrl);
+}else if(searchField== "Equipment"){
+
+  generateEquipmentLink(textInput);
+}else if(searchField== "Spells"){
+
+  console.log("here is the users search query input: ", textInput);
+}else{
+  var textInput=searchField;
+  inputPrompt(textInput);
+}
 }
 //___________________________________________
 
@@ -88,35 +88,35 @@ function getData(data){
 
 
 function generateEquipmentLink(textInput){
-console.log("Here is the requested equipment item: ", textInput);
-// make input lowercase
-var textInputLower = textInput.toLowerCase();
+  console.log("Here is the requested equipment item: ", textInput);
+  // make input lowercase
+  var textInputLower = textInput.toLowerCase();
 
-//replace all of the spaces with dashes
-var newUrl = textInputLower.replace(/ /g, "-");
-var equipmentRequest=equipmentUrl+newUrl;
-console.log("The requested search is: ", equipmentRequest);
-//add the function to get the data and add the data to the dom
-const creatureData = fetch(equipmentRequest)
-.then(function(response) {
-  if (response.status !== 200) {
-    console.log('Looks like there was a problem. Status Code: ' +
-    response.status);
-    inputPrompt(textInput);
-    return;
+  //replace all of the spaces with dashes
+  var newUrl = textInputLower.replace(/ /g, "-");
+  var equipmentRequest=equipmentUrl+newUrl;
+  console.log("The requested search is: ", equipmentRequest);
+  //add the function to get the data and add the data to the dom
+  const creatureData = fetch(equipmentRequest)
+  .then(function(response) {
+    if (response.status !== 200) {
+      console.log('Looks like there was a problem. Status Code: ' +
+      response.status);
+      inputPrompt(textInput);
+      return;
+    }
+    // Examine the text in the response
+    response.json().then(function(data) {
+
+      console.log("About to generate equipment");
+      generateItemBlock(data);
+
+    });
   }
-  // Examine the text in the response
-  response.json().then(function(data) {
-
-    console.log("About to generate equipment");
-    generateEquipment(data);
-
-  });
-}
 )
 .then(data => apiData = data)
 .catch(function(err) {
-console.log('Fetch Error :-S', err);
+  console.log('Fetch Error :-S', err);
 });
 
 
@@ -124,52 +124,62 @@ console.log('Fetch Error :-S', err);
 //___________________________________________
 //This function will handle building the equipment templates
 function generateEquipment(data){
-  var name = data["name"];
-  var equipmentCost = data["cost"];
-  var equipmentCategory = data["equipment_category"];
-  var damage= data["damage"];
-  var range = data["range"];
-  var properties = data["properties"];
-var des= data["desc"];
+  //   var name = data["name"];
+  //   var equipmentCost = data["cost"]["quantity"];
+  //   var costType = data["cost"]["unit"];
+  //
+  //
+  //   var equipmentCategory = data["equipment_category"];
+  //   var damage= data["damage"];
+  //
+  //   var range = data["range"]["normal"];
+  //   var rangeLong= data["range"]["long"];
+  //   var properties = data["properties"];
+  // var des= data["desc"];
+  //
+  //   console.log(name);
+  //   console.log(equipmentCost);
+  //   console.log(properties);
+  //   if (damage.length == 0){
+  //     damage=[{name:"N/A"}];
+  //   }
+  //   if (range.length == null){
+  //       range= "N/A";
+  //   }
+  //   if (rangeLong.length == null){
+  //       range= "N/A";
+  //   }
+  //   if(des==""){
+  //     des="N/A";
+  //   }
 
-  console.log(name);
-  console.log(equipmentCost);
-  console.log(properties);
-  if (damage.length == 0){
-    damage=[{name:"N/A"}];
-  }
-  if (range.length == 0){
-      range= "N/A";
-  }
-  if(des==""){
-    des="N/A";
-  }
-
-  var equipmentInfoContext = {
-    name: name,
-    equipment_cost: equipmentCost,
-    equipment_category: equipmentCategory,
-    damage: damage,
-    range:range,
-    properties: properties,
-    desc: des
-  }
-
-  //checking if this is a new creature or a copy of one already on the sheet
-  var temp=1;
-  for(var i =0; i<priorInfo.length;i++){
-    if(JSON.stringify(priorInfo[i])==JSON.stringify(equipmentInfoContext)){
-      temp=0;
-    }
-  }
-
-  if(temp==1){
-    var equipmentHtml = Handlebars.templates.equipmentTemplate(equipmentInfoContext);
-
-    var creatureContainer = document.querySelector('main.creature-info-container');
-    creatureContainer.insertAdjacentHTML('beforeend', equipmentHtml);
-    priorInfo[priorInfo.length]=equipmentInfoContext;
-  }
+  // var equipmentInfoContext = {
+  //   name: name,
+  //   equipment_cost: equipmentCost,
+  //   cost:costType,
+  //   equipment_category: equipmentCategory,
+  //   damage: damage,
+  //   range:range,
+  //   rangeLong:rangeLong,
+  //   properties: properties,
+  //   desc: des
+  // }
+  //
+  // //checking if this is a new creature or a copy of one already on the sheet
+  // var temp=1;
+  // for(var i =0; i<priorInfo.length;i++){
+  //   if(JSON.stringify(priorInfo[i])==JSON.stringify(equipmentInfoContext)){
+  //     temp=0;
+  //   }
+  // }
+  //
+  // if(temp==1){
+  //   var equipmentHtml = Handlebars.templates.equipmentTemplate(equipmentInfoContext);
+  //
+  //   var creatureContainer = document.querySelector('main.creature-info-container');
+  //   creatureContainer.insertAdjacentHTML('beforeend', equipmentHtml);
+  //   priorInfo[priorInfo.length]=equipmentInfoContext;
+  // }
 }
 
 
@@ -444,37 +454,37 @@ function generateCreatureStatBlock(data) {
 //functions for handling the drop down menu
 
 function individualSpells(data){
-    var allSpellUrls;
+  var allSpellUrls;
 
-    var spellContainer = document.getElementById("spell-container");
+  var spellContainer = document.getElementById("spell-container");
 
-    console.log((data["results"][3]["name"]));
+  console.log((data["results"][3]["name"]));
 
-    for(var i=0; i<data["count"]; i++ ){
-        // Create anchor element.
-        var b = document.createElement('div');
-        var a = document.createElement('a');
+  for(var i=0; i<data["count"]; i++ ){
+    // Create anchor element.
+    var b = document.createElement('div');
+    var a = document.createElement('a');
 
-        b.classList.add("link");
-        // Create the text node for anchor element.
-        var link = document.createTextNode(data["results"][i]["name"]);
+    b.classList.add("link");
+    // Create the text node for anchor element.
+    var link = document.createTextNode(data["results"][i]["name"]);
 
-        // Append the text node to anchor element.
-        a.appendChild(link);
+    // Append the text node to anchor element.
+    a.appendChild(link);
 
-        // Set the title.
-        a.title = data["results"][i]["name"];
+    // Set the title.
+    a.title = data["results"][i]["name"];
 
-        // Set the href property.
-        a.href = data["results"][i]["url"];
+    // Set the href property.
+    a.href = data["results"][i]["url"];
 
-        b.appendChild(a);
+    b.appendChild(a);
 
-        // Append the anchor element to the body.
-        spellContainer.appendChild(b);
+    // Append the anchor element to the body.
+    spellContainer.appendChild(b);
 
 
-	}
+  }
 
 
 }
@@ -483,140 +493,445 @@ function individualSpells(data){
 
 function spellAPICall(){
 
-    var spellurl = "https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/spells/";
-    console.log(url);
-    console.log(spellurl);
-    const spellData = fetch(spellurl).then(function(response) {
-        if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' +
-            response.status);
-            inputPrompt(textInput);
-            return;
-        }
-        // Examine the text in the response
-        response.json().then(function(data) {
-        //getting all the spells
-         individualSpells(data);
-        });
+  var spellurl = "https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/spells/";
+  console.log(url);
+  console.log(spellurl);
+  const spellData = fetch(spellurl).then(function(response) {
+    if (response.status !== 200) {
+      console.log('Looks like there was a problem. Status Code: ' +
+      response.status);
+      inputPrompt(textInput);
+      return;
     }
-)
-  .then(data => apiData = data)
-  .catch(function(err) {
-      console.log('Fetch Error :-S', err);
+    // Examine the text in the response
+    response.json().then(function(data) {
+      //getting all the spells
+      individualSpells(data);
     });
+  }
+)
+.then(data => apiData = data)
+.catch(function(err) {
+  console.log('Fetch Error :-S', err);
+});
 }
 
 function generateSpellBlock(data){
   console.log("IN the spell block");
-    var name = data["name"];
-    var desc = data["desc"];
-    var higher_level = data["higher_level"];
-    var range = data["range"];
-    var components = data["components"];
-    var material = data["material"];
-    var ritual = data["ritual"];
-    var duration = data["duration"];
-    var concentration = data["concentration"];
-    var casting_time = data["time"];
-    var level = data["level"];
-    var school = data["school"];
-    var classes = data["classes"];
-    var subclasses = data["subclasses"];
+  var name = data["name"];
+  var desc = data["desc"];
+  var higher_level = data["higher_level"];
+  var range = data["range"];
+  var components = data["components"];
+  var material = data["material"];
+  var ritual = data["ritual"];
+  var duration = data["duration"];
+  var concentration = data["concentration"];
+  var casting_time = data["time"];
+  var level = data["level"];
+  var school = data["school"];
+  var classes = data["classes"];
+  var subclasses = data["subclasses"];
 
-    var spellInfoContext = {
-     name:name,
-     desc:desc,
-     higher_level:higher_level,
-     range:range,
-     components:components,
-     material:material,
-     ritual:ritual,
-     duration:duration,
-     concentration:concentration,
-     time:time,
-     level:level,
-     school:school,
-     classes:classes,
-     subclasses:subclasses
-	}
-      var creatureContainer = document.querySelector('main.spell-container');
-      creatureContainer.insertAdjacentHTML('beforeend',spellInfoContext);
+  var spellInfoContext = {
+    name:name,
+    desc:desc,
+    higher_level:higher_level,
+    range:range,
+    components:components,
+    material:material,
+    ritual:ritual,
+    duration:duration,
+    concentration:concentration,
+    time:time,
+    level:level,
+    school:school,
+    classes:classes,
+    subclasses:subclasses
+  }
+  var creatureContainer = document.querySelector('main.spell-container');
+  creatureContainer.insertAdjacentHTML('beforeend',spellInfoContext);
 }
 
 
 // again with items
 
 function generateItemBlock(data){
-    var name = data["name"];
-    var desc = data["desc"];
-    var equipment_cat = data["equipment_category"];
-    var gear_cat= data["gear_category"];
-    var vehicle_cat = data["vehicle_category"];
-    var weapon_cat = data["weapon_category"];
-    var weapon_range = data["weapon_range"];
-    var category_range = data["category_range"];
-    var armor_class_base = data["armor_class"]["base"];
-    var armor_class_dex = data["armor_class"]["dex_bonus"];
-    var armor_class_max_bonus = data["armor_class"]["max_bonus"];
-    var str_min = data["str_minimum"];
-    var stealth = data["stealth_disadvantage"];
-    var contents = data["contents"];
-    var quantity = data["cost"]["quantity"];
-    var unit = data["cost"]["unit"];
-    var damage_dice = data["damage"]["damage_dice"];
-    var damage_bonus = data["damage"]["damage_bonus"];
-    var damage_type = data["damage"]["damage_type"];
-    var range_normal = data["range"]["normal"];
-    var range_long = data["range"]["long"];
-    var properties = data["properties"];
+  var equipment_cat = data["equipment_category"];
+  console.log(equipment_cat);
+
+  if(equipment_cat =="Armor"){
+
+    generateArmor(data);
+  }
+  else if(equipment_cat =="Weapon"){
+    generateWeapon(data);
+  }
+  else if(equipment_cat =="Adventuring Gear"){
+
+    if(data["gear_category"] == "Equipment Pack"){
+      console.log("Generating the Adventuring Gear");
+      generateAdventuringGear(data);
+    }else if(data["gear_category"] == "Standard Gear"){
+      generateStandardGear(data);
+    }else{
+      console.log("Broke");
+    }
+  }else if(data["equipment_category"]== "Tools"){
+    generateTools(data);
+
+
+  }else if(data["equipment_category"]== "Mounts and Vehicles"){
+    generateVehicles(data);
+  }else{
+    console.log("broke");
+  }
+
+  // var name = data["name"];
+  // var desc = data["desc"];
+  //
+  // var gear_cat= data["gear_category"];
+  // var vehicle_cat = data["vehicle_category"];
+  // var weapon_cat = data["weapon_category"];
+  // var weapon_range = data["weapon_range"];
+  // var category_range = data["category_range"];
+  // var armor_class_base = data["armor_class"]["base"];
+  // var armor_class_dex = data["armor_class"]["dex_bonus"];
+  // var armor_class_max_bonus = data["armor_class"]["max_bonus"];
+  // var str_min = data["str_minimum"];
+  // var stealth = data["stealth_disadvantage"];
+  // var contents = data["contents"];
+  // var quantity = data["cost"]["quantity"];
+  // var unit = data["cost"]["unit"];
+  // var damage_dice = data["damage"]["damage_dice"];
+  // var damage_bonus = data["damage"]["damage_bonus"];
+  // var damage_type = data["damage"]["damage_type"];
+  // var range_normal = data["range"]["normal"];
+  // var range_long = data["range"]["long"];
+  // var properties = data["properties"];
+  // var th_damage_dice = data["2h_damage"]["damage_dice"];
+  // var th_damage_bonus = data["2h_damage"]["damage_bonus"];
+  // var th_damage_type = data["2h_damage"]["damage_type"];
+  // var throw_range_normal = data["throw_range"]["normal"];
+  // var throw_range_long = data["throw_range"]["long"];
+  // var speed_quantity = data["speed"]["quantity"];
+  // var speed_unit = data["speed"]["unit"];
+  // var capacity = data["capacity"];
+  //
+  // var new_contents;
+  // for(var i =0; i<contents.length();i++){
+  //     new_contents=contents[i][item_url].slice(15);
+  //     n=contents[i][item_url]=new_contents.charAt(0).toUpperCase() + new_contents.slice(1)
+  // }
+  //   if(armor_class_base== null){
+  //     armor_class_base="N/A";
+  //   }
+  //   if(armor_class_dex== null){
+  //     armor_class_dex="N/A";
+  //   }
+  //   if(armor_class_max_bonus== null){
+  //     armor_class_max_bonus="N/A";
+  //   }
+  //   if(th_damage_dice== null){
+  //     th_damage_dice="N/A";
+  //   }
+  //   if(th_damage_bonus== null){
+  //     th_damage_bonus="N/A";
+  //   }
+  //   if(th_damage_type== null){
+  //     th_damage_type="N/A";
+  //   }
+  //
+  //
+  //
+  //
+  //
+  //   var itemInfoContext = {
+  //    name:name,
+  //    desc:desc,
+  //    equipment_cat:equipment_cat,
+  //    gear_cat:gear_cat,
+  //    vehicle_cat:vehicle_cat,
+  //    weapon_cat:weapon_cat,
+  //    weapon_range:weapon_range,
+  //    category_range:category_range,
+  //    armor_class_base:armor_class_base,
+  //    armor_class_dex:armor_class_dex,
+  //    armor_class_max_bonus:armor_class_max_bonus,
+  //    str_min:str_min,
+  //    stealth:stealth,
+  //    contents:contents,
+  //    quantity:quantity,
+  //    unit:unit,
+  //    damage_dice:damage_dice,
+  //    damage_bonus:damage_bonus,
+  //    damage_type:damage_type,
+  //    range_normal:range_normal,
+  //    range_long:range_long,
+  //    properties:properties,
+  //    th_damage_dice:th_damage_dice,
+  //    th_damage_bonus:th_damage_bonus,
+  //    th_damage_type:th_damage_type,
+  //    throw_range_normal:throw_range_normal,
+  //    throw_range_long:throw_range_long,
+  //    speed_quantity:speed_quantity,
+  //    speed_unit:speed_unit,
+  //    capacity:capacity
+  // }
+  // var creatureContainer = document.querySelector('main.spell-container');
+  // creatureContainer.insertAdjacentHTML('beforeend',itemInfoContext);
+}
+function generateArmor(data){
+  console.log("In the armor function");
+  var weight =data["weight"];
+  var equipment_cat = data["equipment_category"];
+  var armor_category =data["armor_category"];
+  var name = data["name"];
+  var armor_class_base = data["armor_class"]["base"];
+  var armor_class_dex = data["armor_class"]["dex_bonus"];
+  var armor_class_max_bonus = data["armor_class"]["max_bonus"];
+  var str_min = data["str_minimum"];
+  var stealth = data["stealth_disadvantage"];
+  var quantity = data["cost"]["quantity"];
+  var unit = data["cost"]["unit"];
+
+  var armorContext = {
+    armor_cat:armor_category,
+    equipment_cat: equipment_cat,
+    name:name,
+    armor_class_base:armor_class_base,
+    armor_class_dex: armor_class_dex,
+    armor_class_max_bonus:armor_class_max_bonus,
+    str_min:str_min,
+    stealth: stealth,
+    quantity: quantity,
+    unit:unit,
+    weight:weight
+
+
+  }
+  var temp=1;
+  for(var i =0; i<priorInfo.length;i++){
+    if(JSON.stringify(priorInfo[i])==JSON.stringify(armorContext)){
+      temp=0;
+    }
+  }
+
+  if(temp==1){
+    var armorHtml = Handlebars.templates.item(armorContext);
+
+    var creatureContainer = document.querySelector('main.creature-container');
+    creatureContainer.insertAdjacentHTML('beforeend', armorHtml);
+    priorInfo[priorInfo.length]=armorContext;
+  }
+
+}
+function generateWeapon(data){
+  var weight =data["weight"];
+  var name = data["name"];
+  var equipment_cat = data["equipment_category"];
+  var quantity = data["cost"]["quantity"];
+  var unit = data["cost"]["unit"];
+
+  var category_range = data["category_range"];
+  var damage_dice = data["damage"]["damage_dice"];
+  var damage_bonus = data["damage"]["damage_bonus"];
+  var damage_type = data["damage"]["damage_type"]["name"];
+  var range_normal = data["range"]["normal"];
+  var range_long = data["range"]["long"];
+  var properties = data["properties"];
+  if(data["2h_damage"]== null){
+    var th_damage_dice = null;
+    var th_damage_bonus = null;
+
+
+  }else{
     var th_damage_dice = data["2h_damage"]["damage_dice"];
     var th_damage_bonus = data["2h_damage"]["damage_bonus"];
-    var th_damage_type = data["2h_damage"]["damage_type"];
+
+  }
+  if(data["throw_range"]== null){
+    var throw_range_normal = null;
+    var throw_range_long = null;
+
+  }else{
     var throw_range_normal = data["throw_range"]["normal"];
     var throw_range_long = data["throw_range"]["long"];
-    var speed_quantity = data["speed"]["quantity"];
-    var speed_unit = data["speed"]["unit"];
-    var capacity = data["capacity"];
+  }
+  var weaponContext = {
+    equipment_cat: equipment_cat,
+    name:name,
+    quantity: quantity,
+    unit:unit,
+    weight:weight,
+    category_range:category_range,
+    damage_dice:damage_dice,
+    damage_bonus:damage_bonus,
+    damage_type:damage_type,
+    range_normal:range_normal,
+    range_long:range_long,
+    properties:properties,
+    th_damage_dice:th_damage_dice,
+    th_damage_bonus:th_damage_bonus,
+    throw_range_normal:throw_range_normal,
+    throw_range_long:throw_range_long
 
-    var new_contents;
-    for(var i =0; i<contents.length();i++){
-        new_contents=contents[i][item_url].slice(15);
-        n=contents[i][item_url]=new_contents.charAt(0).toUpperCase() + new_contents.slice(1)
+  }
+  var temp=1;
+  for(var i =0; i<priorInfo.length;i++){
+    if(JSON.stringify(priorInfo[i])==JSON.stringify(weaponContext)){
+      temp=0;
     }
+  }
+
+  if(temp==1){
+    var weaponHtml = Handlebars.templates.item(weaponContext);
+
+    var creatureContainer = document.querySelector('main.creature-container');
+    creatureContainer.insertAdjacentHTML('beforeend', weaponHtml);
+    priorInfo[priorInfo.length]=weaponContext;
+  }
 
 
-    var itemInfoContext = {
-     name:name,
-     desc:desc,
-     equipment_cat:equipment_cat,
-     gear_cat:gear_cat,
-     vehicle_cat:vehicle_cat,
-     weapon_cat:weapon_cat,
-     weapon_range:weapon_range,
-     category_range:category_range,
-     armor_class_base:armor_class_base,
-     armor_class_dex:armor_class_dex,
-     armor_class_max_bonus:armor_class_max_bonus,
-     str_min:str_min,
-     stealth:stealth,
-     contents:contents,
-     quantity:quantity,
-     unit:unit,
-     damage_dice:damage_dice,
-     damage_bonus:damage_bonus,
-     damage_type:damage_type,
-     range_normal:range_normal,
-     range_long:range_long,
-     properties:properties,
-     th_damage_dice:th_damage_dice,
-     th_damage_bonus:th_damage_bonus,
-     th_damage_type:th_damage_type,
-     throw_range_normal:throw_range_normal,
-     throw_range_long:throw_range_long,
-     speed_quantity:speed_quantity,
-     speed_unit:speed_unit,
-     capacity:capacity
-	}
-    var creatureContainer = document.querySelector('main.spell-container');
-    creatureContainer.insertAdjacentHTML('beforeend',itemInfoContext);
+}
+function generateAdventuringGear(data){
+  var gear_cat= data["gear_category"];
+  var weight =data["weight"];
+  var name = data["name"];
+  var equipment_cat = data["equipment_category"];
+  var quantity = data["cost"]["quantity"];
+  var unit = data["cost"]["unit"];
+  var contents = data["contents"];
+
+  var new_contents;
+  for(var i =0; i<contents.length;i++){
+    new_contents=contents[i]["item_url"].slice(15);
+    n=contents[i]["item_url"]=new_contents.charAt(0).toUpperCase() + new_contents.slice(1)
+  }
+  var gearContext ={
+    gear_cat:gear_cat,
+    weight:weight,
+    name:name,
+    equipment_cat:equipment_cat,
+    quantity:quantity,
+    unit:unit,
+    contents:contents
+  }
+  var temp=1;
+  for(var i =0; i<priorInfo.length;i++){
+    if(JSON.stringify(priorInfo[i])==JSON.stringify(gearContext)){
+      temp=0;
+    }
+  }
+
+  if(temp==1){
+    var gearHtml = Handlebars.templates.item(gearContext);
+
+    var creatureContainer = document.querySelector('main.creature-container');
+    creatureContainer.insertAdjacentHTML('beforeend', gearHtml);
+    priorInfo[priorInfo.length]= gearContext;
+  }
+
+}
+function generateTools(data){
+  var weight =data["weight"];
+  var equipment_category=data["equipment_category"];
+
+  var name = data["name"];
+  var quantity = data["cost"]["quantity"];
+  var unit = data["cost"]["unit"];
+  var desc = data["desc"];
+
+  var toolsContext = {
+    name:name,
+    quantity: quantity,
+    unit:unit,
+    weight:weight,
+    desc:desc,
+    equipment_cat:equipment_category
+  }
+  var temp=1;
+  for(var i =0; i<priorInfo.length;i++){
+    if(JSON.stringify(priorInfo[i])==JSON.stringify(toolsContext)){
+      temp=0;
+    }
+  }
+
+  if(temp==1){
+    var toolsHtml = Handlebars.templates.item(toolsContext);
+
+    var creatureContainer = document.querySelector('main.creature-container');
+    creatureContainer.insertAdjacentHTML('beforeend', toolsHtml);
+    priorInfo[priorInfo.length]= toolsContext;
+  }
+
+}
+function generateVehicles(data){
+  var equipment_category=data["equipment_category"];
+    var name = data["name"];
+  var quantity = data["cost"]["quantity"];
+  var unit = data["cost"]["unit"];
+  var speed_quantity = data["speed"]["quantity"];
+  var speed_unit = data["speed"]["unit"];
+  var capacity = data["capacity"];
+  var vehicleContext ={
+    name:name,
+    quantity:quantity,
+    unit: unit,
+    speed_quantity:speed_quantity,
+    speed_unit:speed_unit,
+    capacity:capacity,
+    equipment_cat:equipment_category
+
+
+  }
+  var temp=1;
+  for(var i =0; i<priorInfo.length;i++){
+    if(JSON.stringify(priorInfo[i])==JSON.stringify(vehicleContext)){
+      temp=0;
+    }
+  }
+
+  if(temp==1){
+    var vehicleHtml = Handlebars.templates.item(vehicleContext);
+
+    var creatureContainer = document.querySelector('main.creature-container');
+    creatureContainer.insertAdjacentHTML('beforeend', vehicleHtml);
+    priorInfo[priorInfo.length]= vehicleContext;
+  }
+
+
+}
+function generateStandardGear(data){
+  var weight =data["weight"];
+  var equipment_category=data["equipment_category"];
+  var name = data["name"];
+  var quantity = data["cost"]["quantity"];
+  var unit = data["cost"]["unit"];
+  var desc = data["desc"];
+
+  var standardContext={
+    name:name,
+    quantity: quantity,
+    unit:unit,
+    weight:weight,
+    equipment_cat:equipment_category,
+    desc:desc
+  }
+
+  var temp=1;
+  for(var i =0; i<priorInfo.length;i++){
+    if(JSON.stringify(priorInfo[i])==JSON.stringify(standardContext)){
+      temp=0;
+    }
+  }
+
+  if(temp==1){
+    var standardHtml = Handlebars.templates.item(standardContext);
+
+    var creatureContainer = document.querySelector('main.creature-container');
+    creatureContainer.insertAdjacentHTML('beforeend', standardHtml);
+    priorInfo[priorInfo.length]= standardContext;
+  }
+
 }

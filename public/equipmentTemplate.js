@@ -45,16 +45,19 @@ templates['equipmentTemplate'] = template({"1":function(container,depth0,helpers
         return undefined
     };
 
-  return "<article class=\"equipment\">\r\n\r\n    <div class=\"equipment-content\">\r\n        <p class=\"equipment-name\">\r\n          <a href=\"#\">"
+  return "<article class=\"equipment creature\">\r\n\r\n    <div class=\"equipment-content creature-content\">\r\n        <p class=\"equipment-name\">\r\n          <a href=\"#\">"
     + alias4(((helper = (helper = lookupProperty(helpers,"name") || (depth0 != null ? lookupProperty(depth0,"name") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data,"loc":{"start":{"line":5,"column":22},"end":{"line":5,"column":30}}}) : helper)))
     + " </a>\r\n        </p>\r\n\r\n        <p class=\"equipment-content \" >\r\n          Cost:\r\n          "
     + alias4(((helper = (helper = lookupProperty(helpers,"equipment_cost") || (depth0 != null ? lookupProperty(depth0,"equipment_cost") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"equipment_cost","hash":{},"data":data,"loc":{"start":{"line":10,"column":10},"end":{"line":10,"column":28}}}) : helper)))
+    + alias4(((helper = (helper = lookupProperty(helpers,"cost") || (depth0 != null ? lookupProperty(depth0,"cost") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"cost","hash":{},"data":data,"loc":{"start":{"line":10,"column":28},"end":{"line":10,"column":36}}}) : helper)))
     + "\r\n        </p>\r\n        <p>\r\n          Equipment Category:\r\n            "
     + alias4(((helper = (helper = lookupProperty(helpers,"equipment_category") || (depth0 != null ? lookupProperty(depth0,"equipment_category") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"equipment_category","hash":{},"data":data,"loc":{"start":{"line":14,"column":12},"end":{"line":14,"column":34}}}) : helper)))
     + "\r\n        </p>\r\n        <p class=\"equipment-content \" >\r\n          Damage:\r\n"
     + ((stack1 = lookupProperty(helpers,"each").call(alias1,(depth0 != null ? lookupProperty(depth0,"damage") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":18,"column":10},"end":{"line":26,"column":19}}})) != null ? stack1 : "")
     + "        </p>\r\n        <p>\r\n          Range:\r\n            "
     + alias4(((helper = (helper = lookupProperty(helpers,"range") || (depth0 != null ? lookupProperty(depth0,"range") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"range","hash":{},"data":data,"loc":{"start":{"line":30,"column":12},"end":{"line":30,"column":21}}}) : helper)))
+    + "/"
+    + alias4(((helper = (helper = lookupProperty(helpers,"rangeLong") || (depth0 != null ? lookupProperty(depth0,"rangeLong") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"rangeLong","hash":{},"data":data,"loc":{"start":{"line":30,"column":22},"end":{"line":30,"column":35}}}) : helper)))
     + "\r\n        </p>\r\n        <p>\r\n          Properties:\r\n"
     + ((stack1 = lookupProperty(helpers,"each").call(alias1,(depth0 != null ? lookupProperty(depth0,"properties") : depth0),{"name":"each","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":34,"column":12},"end":{"line":36,"column":21}}})) != null ? stack1 : "")
     + "        </p>\r\n        <p>\r\n          Description:\r\n            "
