@@ -1,24 +1,25 @@
 var modal = document.getElementById("search-creature-modal");
 
-var initiativeButton= document.getElementById("create-initiative-button");
+//var initiativeButton= document.getElementById("create-initiative-button");
 
-var closeButton= document.getElementsByClassName("modal-close-button");
+/*var closeButton= document.getElementsByClassName("modal-close-button");
 closeButton[0].addEventListener('click', closeModal);
 
 var cancelButton= document.getElementsByClassName("modal-cancel-button");
 cancelButton[0].addEventListener('click', closeModal);
 
 var acceptButton= document.getElementsByClassName("modal-accept-button");
-acceptButton[0].addEventListener('click', acceptModal);
+acceptButton[0].addEventListener('click', acceptModal);*/
 
 var searchButton = document.getElementById("navbar-search-button");
 var url= "https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/";
+
 
 var error;
 
 
 
-initiativeButton.onclick = function() {
+/*initiativeButton.onclick = function() {
   var modalBackdrop = document.getElementById('modal-backdrop');
   var searchCreatureModal = document.getElementById('search-creature-modal');
 
@@ -29,7 +30,7 @@ initiativeButton.onclick = function() {
   document.getElementById("modal-text-input").value= "";
   document.getElementById("modal-number-input").value= "";
 
-}
+}*/
 
 //___________________________________________
 //This function takes the users input from the search bar and puts the stat block in place
@@ -237,24 +238,26 @@ function inputPrompt(textInput){
 }
 //________________________________________________________
 //stupid name stuff
-//based on
+
+//based on 
 /*
 (c) by Thomas Konings
 Random Name Generator for Javascript
 */
 
 function capFirst(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
+  	return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function generateName(){
-  var name1 = ["Jack","Eragon","Samwise","Frodo","Gandalf","Gimli","Aragorn","Legolas","Zaque","Zacckk","Zacck","ZACK","Zakk","Zak","Rob Hess","Liam","Noah","William","James","Oliver","Benjamin","Elijah","Lucas","Mason","Logan","Emma","Olivia","Ava","Isabella","Sophia","Charlotte","Mia","Amelia","Harper","Evelyn","Piers Borngasser","Ian Bailey","Tyson Fairhurst","Ethan Hunter","Jeff","Zach","Zack","Zacc","Zachary","Bob","Joe","Brian","THE DUDE","Your Worst Enemy","Ezekiel","Michael","David","John","James","Robert","Mark","William","Richard","Thomas","Jeffrey","Steven","Joseph","Timothy","Kevin","Scott","Brian","Charles","Paul","Daniel","Christopher","Kenneth","Anthony","Gregory","Ronald","Donald","Gary","Stephen","Eric","Edward","Douglas","Todd","Patrick","Keith","Larry","Matthew","Terry","Andrew","Dennis","Randy","Jerry","Peter","Frank","Craig","Raymond","Jeffery","Bruce","Rodney","Mike","Roger","Tony","Ricky","Steve","Jeff","Troy","Alan","Carl","Danny","Russell","Chris","Bryan","Gerald","Wayne","Joe","Randall","Lawrence","Dale","Phillip","Johnny","Vincent","Martin","Bradley","Billy","Glenn","Shawn","Jonathan","Jimmy","Sean","Curtis","Barry","Bobby","Walter","Jon","Philip","Samuel","Jay","Jason","Dean","Jose","Tim","Roy","Willie","Arthur","Darryl","Henry","Darrell","Allen","Victor","Harold","Greg"]
-  var name = capFirst(name1[getRandomInt(0, name1.length)]);
-  return name;
+	var name1 = ["Jack","Eragon","Samwise","Frodo","Gandalf","Gimli","Aragorn","Legolas","Zaque","Zacckk","Zacck","ZACK","Zakk","Zak","Rob Hess","Liam","Noah","William","James","Oliver","Benjamin","Elijah","Lucas","Mason","Logan","Emma","Olivia","Ava","Isabella","Sophia","Charlotte","Mia","Amelia","Harper","Evelyn","Piers Borngasser","Ian Bailey","Tyson Fairhurst","Ethan Hunter","Jeff","Zach","Zack","Zacc","Zachary","Bob","Joe","Brian","THE DUDE","Your Worst Enemy","Ezekiel","Michael","David","John","James","Robert","Mark","William","Richard","Thomas","Jeffrey","Steven","Joseph","Timothy","Kevin","Scott","Brian","Charles","Paul","Daniel","Christopher","Kenneth","Anthony","Gregory","Ronald","Donald","Gary","Stephen","Eric","Edward","Douglas","Todd","Patrick","Keith","Larry","Matthew","Terry","Andrew","Dennis","Randy","Jerry","Peter","Frank","Craig","Raymond","Jeffery","Bruce","Rodney","Mike","Roger","Tony","Ricky","Steve","Jeff","Troy","Alan","Carl","Danny","Russell","Chris","Bryan","Gerald","Wayne","Joe","Randall","Lawrence","Dale","Phillip","Johnny","Vincent","Martin","Bradley","Billy","Glenn","Shawn","Jonathan","Jimmy","Sean","Curtis","Barry","Bobby","Walter","Jon","Philip","Samuel","Jay","Jason","Dean","Jose","Tim","Roy","Willie","Arthur","Darryl","Henry","Darrell","Allen","Victor","Harold","Greg"]
+	var name = capFirst(name1[getRandomInt(0, name1.length)]);
+	return name;
+
 
 }
 
@@ -290,34 +293,33 @@ function generateCreatureStatBlock(data) {
   var act = data["actions"];
   var lact = data["legendary_actions"];
 
-  console.log(lact);
-  console.log(act);
-  console.log(con_immune);
-  if (prof.length == 0){
+  var hpd = data["hit_dice"];
+ 
+ if (prof.length == 0){
     prof=[{name:"N/A"}];
-  }
-  if (vuls.length == 0){
+ }
+ if (vuls.length == 0){
     console.log("in vuls");
     vuls= "N/A";
-  }
-  if(resist.length == 0){
+ }
+ if(resist.length == 0){
     resist="N/A";
   }
-  if (immune.length == 0){
+if (immune.length == 0){
     immune="N/A";
-  }
+}
   if (con_immune.length == 0){
     con_immune=[{name:"N/A"}];
-  }
-  if (sa.length == 0){
-    sa=[{name:"N/A"}];
-  }
-  if (act.length == 0){
+ }
+ //if (sa.length == 0){
+   // sa=[{name:"N/A"}];
+ //}
+ if (act.length == 0){
     act=[{name:"N/A"}];
-  }
+ }
   if (lact==null || lact.length == 0){
     lact=[{name:"N/A"}];
-  }
+ }
 
   var creatureInfoContext = {
     name: name,
@@ -336,22 +338,200 @@ function generateCreatureStatBlock(data) {
     sa: sa,
     act: act,
     lact: lact,
-  }
-
-  //checking if this is a new creature or a copy of one already on the sheet
-  var temp=1;
-  for(var i =0; i<priorInfo.length;i++){
+    hpd: hpd
+ }
+ 
+ //checking if this is a new creature or a copy of one already on the sheet
+ var temp=1;
+ for(var i =0; i<priorInfo.length;i++){
     if(JSON.stringify(priorInfo[i])==JSON.stringify(creatureInfoContext)){
-      temp=0;
-    }
-  }
+        temp=0;
+	}
+ }
 
-  if(temp==1){
-    var creatureInfoHtml = Handlebars.templates.creatureInfoTemplate(creatureInfoContext);
-
-    var creatureContainer = document.querySelector('main.creature-info-container');
-    creatureContainer.insertAdjacentHTML('beforeend', creatureInfoHtml);
-    priorInfo[priorInfo.length]=creatureInfoContext;
+ if(temp==1){
+      var creatureInfoHtml = Handlebars.templates.creatureInfoTemplate(creatureInfoContext);
+  
+      var creatureContainer = document.querySelector('main.creature-info-container');
+      creatureContainer.insertAdjacentHTML('beforeend', creatureInfoHtml);
+      priorInfo[priorInfo.length]=creatureInfoContext;
   }
 }
 //functions for handling the drop down menu
+
+function individualSpells(data){
+    var allSpellUrls;
+
+    var spellContainer = document.getElementById("spell-container");
+    console.log((data["results"][3]["name"]));
+
+    for(var i=0; i<data["count"]; i++ ){
+        // Create anchor element. 
+        var b = document.createElement('div');
+        var a = document.createElement('a');  
+        
+        b.classList.add("link");
+        // Create the text node for anchor element. 
+        var link = document.createTextNode(data["results"][i]["name"]); 
+                  
+        // Append the text node to anchor element. 
+        a.appendChild(link);  
+                  
+        // Set the title. 
+        a.title = data["results"][i]["name"];  
+                  
+        // Set the href property. 
+        a.href = data["results"][i]["url"];  
+
+        b.appendChild(a);
+                  
+        // Append the anchor element to the body. 
+        spellContainer.appendChild(b);
+        
+        
+	}
+
+
+}
+
+
+
+function spellAPICall(){
+
+    var spellurl = "https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/spells/";
+    console.log(url);
+    console.log(spellurl);
+    const spellData = fetch(spellurl).then(function(response) {
+        if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' +
+            response.status);
+            inputPrompt(textInput);
+            return;
+        }
+        // Examine the text in the response
+        response.json().then(function(data) {
+        //getting all the spells
+         individualSpells(data);   
+        });
+    }
+)
+  .then(data => apiData = data)
+  .catch(function(err) {
+      console.log('Fetch Error :-S', err);
+    });
+}
+
+function generateSpellBlock(data){
+    var name = data["name"];
+    var desc = data["desc"];
+    var higher_level = data["higher_level"];
+    var range = data["range"];
+    var components = data["components"];
+    var material = data["material"];
+    var ritual = data["ritual"];
+    var duration = data["duration"];
+    var concentration = data["concentration"];
+    var casting_time = data["time"];
+    var level = data["level"];
+    var school = data["school"];
+    var classes = data["classes"];
+    var subclasses = data["subclasses"];
+
+    var spellInfoContext = {
+     name:name,
+     desc:desc,
+     higher_level:higher_level,
+     range:range,
+     components:components,
+     material:material,
+     ritual:ritual,
+     duration:duration,
+     concentration:concentration,
+     time:time,
+     level:level,
+     school:school,
+     classes:classes,
+     subclasses:subclasses
+	}
+      var creatureContainer = document.querySelector('main.creature-info-container');
+      creatureContainer.insertAdjacentHTML('beforeend',spellInfoContext);
+}
+
+
+// again with items
+
+function generateItemBlock(data){
+    var name = data["name"];
+    var desc = data["desc"];
+    var equipment_cat = data["equipment_category"];
+    var gear_cat= data["gear_category"];
+    var vehicle_cat = data["vehicle_category"];
+    var weapon_cat = data["weapon_category"];
+    var weapon_range = data["weapon_range"];
+    var category_range = data["category_range"];
+    var armor_class_base = data["armor_class"]["base"];
+    var armor_class_dex = data["armor_class"]["dex_bonus"];
+    var armor_class_max_bonus = data["armor_class"]["max_bonus"];
+    var str_min = data["str_minimum"];
+    var stealth = data["stealth_disadvantage"];
+    var contents = data["contents"];
+    var quantity = data["cost"]["quantity"]; 
+    var unit = data["cost"]["unit"];
+    var damage_dice = data["damage"]["damage_dice"];
+    var damage_bonus = data["damage"]["damage_bonus"];
+    var damage_type = data["damage"]["damage_type"];
+    var range_normal = data["range"]["normal"];
+    var range_long = data["range"]["long"];
+    var properties = data["properties"];
+    var 2h_damage_dice = data["2h_damage"]["damage_dice"];
+    var 2h_damage_bonus = data["2h_damage"]["damage_bonus"];
+    var 2h_damage_type = data["2h_damage"]["damage_type"];    
+    var throw_range_normal = data["throw_range"]["normal"];
+    var throw_range_long = data["throw_range"]["long"];
+    var speed_quantity = data["speed"]["quantity"]; 
+    var speed_unit = data["speed"]["unit"];
+    var capacity = data["capacity"];
+
+    var new_contents;
+    for(var i =0; i<contents.length();i++){
+        new_contents=contents[i][item_url].slice(15);
+        n=contents[i][item_url]=new_contents.charAt(0).toUpperCase() + new_contents.slice(1)
+    }
+   
+
+    var itemInfoContext = {
+     name:name,
+     desc:desc,
+     equipment_cat:equipment_cat,
+     gear_cat:gear_cat,
+     vehicle_cat:vehicle_cat,
+     weapon_cat:weapon_cat,
+     weapon_range:weapon_range,
+     category_range:category_range,
+     armor_class_base:armor_class_base,
+     armor_class_dex:armor_class_dex,
+     armor_class_max_bonus:armor_class_max_bonus,
+     str_min:str_min,
+     stealth:stealth,
+     contents:contents,
+     quantity:quantity,
+     unit:unit,
+     damage_dice:damage_dice,
+     damage_bonus:damage_bonus,
+     damage_type:damage_type,
+     range_normal:range_normal,
+     range_long:range_long,
+     properties:properties,
+     2h_damage_dice:2h_damage_dice,
+     2h_damage_bonus:2h_damage_bonus,
+     2h_damage_type:2h_damage_type,
+     throw_range_normal:throw_range_normal,
+     throw_range_long:throw_range_long,
+     speed_quantity:speed_quantity,
+     speed_unit:speed_unit,
+     capacity:capacity
+	}
+    var creatureContainer = document.querySelector('main.creature-info-container');
+    creatureContainer.insertAdjacentHTML('beforeend',itemInfoContext);
+}
+

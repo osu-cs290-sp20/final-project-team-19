@@ -1,0 +1,49 @@
+  <script src="initiativeButton.js" charset="utf-8" defer></script>
+  
+  <main class = "button-container">
+    <article class="button-position">
+      <button class="btn create-initiative" id="create-initiative-button">Roll Initiative</button>
+    </article>
+  </main>
+
+<main class="creature-info-container">
+
+</main>
+<main class="body-text creature-container">
+
+
+
+
+</main>
+
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="search-creature-modal" class="hidden">
+      <div class="modal-dialog">
+
+        <div class="modal-header">
+          <h2>Search for a Creature</h2>
+          <button type="button" class="modal-close-button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-input-element">
+            <label for="modal-text-input"> Enter a Creature</label>
+              <textarea id="modal-text-input"></textarea>
+            </div>
+
+          <div class="modal-input-element">
+            <label for="modal-attribution-input">Number of Creature(s)</label>
+              <textarea id="modal-number-input"></textarea>
+
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="modal-cancel-button">Cancel</button>
+          <button type="button" class="modal-accept-button">Create Initiative</button>
+        </div>
+
+
+
+      </div>
+    </div>

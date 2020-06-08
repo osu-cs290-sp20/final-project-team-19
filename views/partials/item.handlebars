@@ -1,0 +1,221 @@
+﻿<article class="item-box">
+    <div class="item-content">
+        <h4 class="item-name">
+            {{name}}
+        </h4>
+            <div>
+                <span class="spell-info">Equipment Catagory: </span>
+                <span class="spell-item">{{equipment_cat}}</span>
+            </div>
+
+            {{#if gear_cat}}
+            <div>
+                <span class="spell-info">Gear Catagory: </span>
+                <span class="spell-item">
+                    {{gear_cat}}
+                </span>
+            </div>
+            {{/if}}
+            {{#if vehicle_cat}}
+            <div>
+                <span class="spell-info">Vehicle Catagory: </span>
+                <span class="spell-item">
+                    {{vehicle_cat}}
+                </span>
+            </div>
+            {{/if}}
+
+            {{#if tool_cat}}
+            <div>
+                <span class="spell-info">Tool Catagory: </span>
+                <span class="spell-item">
+                    {{tool_cat}}
+                </span>
+            </div>
+            {{/if}}
+            {{#if armor_cat}}
+            <div>
+                <span class="spell-info">Armor Catagory: </span>
+                <span class="spell-item">
+                    {{armor_cat}}
+                </span>
+            </div>
+            {{/if}}
+            {{#if weapon_cat}}
+            <div>
+                <span class="spell-info">Weapon Catagory: </span>
+                <span class="spell-item">
+                    {{weapon_cat}}
+                </span>
+            </div>
+            {{/if}}
+
+            {{#if weapon_range}}
+            <div>
+                <span class="spell-info">Weapon Range: </span>
+                <span class="spell-item">
+                    {{weapon_range}}
+                </span>
+            </div>
+            {{/if}}
+            {{#if category_range}}
+            <div>
+                <span class="spell-info">Catagory Range: </span>
+                <span class="spell-item">
+                    {{category_range}}
+                </span>
+            </div>
+            {{/if}}
+
+
+            {{#if armor_class_base}}
+            <div>
+                <p class="spell-info">Armor Class: </p>
+                <p class="spell-item">Base:</p>
+                <span class="spell-item">{{armor_class_base}}</span>
+                <p class="spell-item">Dexterity Bonus: </p>
+                <span class="spell-item">{{armor_class_dex}}</span>
+                <p class="spell-item">Max Bonus: </p>
+                <span class="spell-item">{{armor_class_max_bonus}}</span>
+            </div>
+            {{/if}}
+
+            {{#if str_min}}
+            <div>
+                <span class="spell-info">Minimum Strength Necessary: </span>
+                <span class="spell-item">
+                    {{str_min}}
+                </span>
+            </div>
+            {{/if}}
+            {{#if stealth}}
+            <div>
+                <span class="spell-info">Stealth Disadvantage: </span>
+                <span class="spell-item">
+                    {{stealth}}
+                </span>
+            </div>
+            {{/if}}
+
+            {{#if contents}}
+            <div>
+                <p class="spell-info">Contents: </p>
+                <p class="spell-item">
+                    {{#each contents}}
+                    {{item_url}}:{{quantity}}
+                    {{/each}}
+                </p>
+            </div>
+            {{/if}}
+
+
+
+            <div>
+                <span class="spell-info">Cost: </span>
+                <span class="spell-item">{{quantity}}  {{unit}}</span>
+            </div>
+            <div>
+                <span class="spell-info">Weight: </span>
+                <span class="spell-item">{{weight}}</span>
+            </div>
+            {{#if damage_dice}}
+            <div>
+
+                <p class="spell-info">Damage: </p>
+                <p class="spell-item">Damage Dice:</p>
+                <span class="spell-item">{{damage_dice}}</span>
+                <p class="spell-item">Damage Bonus: </p>
+                <span class="spell-item">{{damage_bonus}}</span>
+                <p class="spell-item">Damage Type: </p>
+                <p class="spell-item">
+                    {{#each damage_type}}
+                    {{name}}
+                    {{/each}}
+                </p>
+            </div>
+            {{/if}}
+            {{#if range_normal}}
+            <div>
+                <span class="spell-info">Range: </span>
+                <p class="spell-info"> Normal Range:</p>
+                <span class="spell-item">
+                    {{range_normal}}
+            </div>
+            {{/if}}
+            {{#if range_long}}
+            <div>
+                </span>
+                <p class="spell-info"> Long Range:</p>
+                <span class="spell-item">
+                    {{range_long}}
+                </span>
+            </div>
+            {{/if}}
+
+            {{#if properties}}
+            <div>
+                <p class="spell-info">Properties: </p>
+                <p class="spell-item">
+                    {{#each properties}}
+                    {{name}},
+                    {{/each}}
+                </p>
+            </div>
+            {{/if}}
+
+            {{#if 2h_damage_dice}}
+            <div>
+
+                <p class="spell-info">Two handed Damage: </p>
+                <p class="spell-item">Damage Dice:</p>
+                <span class="spell-item">{{2h_damage_dice}}</span>
+                <p class="spell-item">Damage Bonus: </p>
+                <span class="spell-item">{{2h_damage_bonus}}</span>
+                <p class="spell-item">Damage Type: </p>
+                <p class="spell-item">
+                    {{#each 2h_damage_type}}
+                    {{name}}
+                    {{/each}}
+                </p>
+            </div>
+            {{/if}}
+            {{#if throw_range_normal}}
+            <div>
+                <p class="spell-info">Short Throw Range:</p>
+                <span class="spell-item">
+                    {{throw_range_normal}}
+                </span>
+                <p class="spell-info"> Long Throw Range:</p>
+                <span class="spell-item">
+                    {{throw_range_long}}
+                </span>
+            </div>
+            {{/if}}
+
+            {{#if speed_quantity}}
+            <div>
+                <span class="spell-info">Speed: </span>
+                <span class="spell-item">
+                    {{speed_quantity}} {{speed_unit}}
+                </span>
+            </div>
+            {{/if}}
+            {{#if capacity}}
+            <div>
+                <span class="spell-info">Capacity: </span>
+                <span class="spell-item">
+                    {{capacity}}
+                </span>
+            </div>
+            {{/if}}
+
+
+            {{#if desc}}
+            <div>
+                <span class="spell-info">Description: </span>
+                <span class="spell-item">{{desc}}</span>
+            </div>
+            {{/if}}
+
+        </div>
+</article>
