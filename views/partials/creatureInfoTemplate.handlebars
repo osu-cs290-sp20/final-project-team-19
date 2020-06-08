@@ -2,70 +2,64 @@
     
     <div class="creature-content">
         <p class="creature-name">
-          <span class = "important">{{name}}</span>
+          <a href="#">{{name}}</a>
         </p>
-        <span class = "important">
-          Challenge Rating: 
-        </span>
-        <span>
-        {{CR}}
-        </span>
         <p>
-          <span class="important"> Hit Dice: </span><span>{{hpd}}</span>
+            Challenge Rating: {{CR}}
         </p>
         <p class="creature-content stat-block" >
-          <span class = "important">Strength:</span> <span>{{str}}</span>,
-          <span class = "important">Dexterity:</span> <span>{{dex}}</span>,
-          <span class = "important">Constitution:</span> <span>{{con}}</span>,
-          <span class = "important">Intelligence:</span> <span>{{int}}</span>,
-          <span class = "important">Wisdom:</span> <span>{{wis}}</span>,
-          <span class = "important">Charisma:</span> <span>{{cha}}</span>
+          Strength: {{str}},
+          Dexterity: {{dex}},
+          Constitution: {{con}},
+          Intelligence: {{int}},
+          Wisdom: {{wis}},
+          Charisma: {{cha}}
         </p>
         <p class= "creature-content proficiencies">
-         <span class = "important">Proficiencies:</span>
+          Proficiencies:
           {{#each prof}}
           <p>
-            <span class = "less-important">{{name}}</span>: {{value}}
+              {{name}}: {{value}}
           </p>
           {{/each}}
         </p>
         <p class="creature-content dmg-vul" >
-          <span class = "important">Vulnerabilities:</span> <span>{{vuls}}</span>
+          Vulnerabilities: {{vuls}}
         </p>
         <p class="creature-content dmg-resist" >
-          <span class = "important">Resistances:</span> <span>{{resist}}</span>
+          Resistances: {{resist}}
         </p>
         <p class="creature-content dmg-immune" >
-          <span class = "important">Immunities:</span> <span>{{immune}}</span>
+          Immunities: {{immune}}
         </p>
         <p class="creature-content condit-immune" >
-          <span class = "important">Condition Immunities:</span>
+          Condition Immunities:
           {{#each con_immune}}
               {{name}},
           {{/each}}
         </p>
         <p class="creature-content special-abilities" >
-          <span class = "important">Special Abilities:</span>
+          Special Abilities:
           {{#each sa}}
           <p>
-              <span class = "less-important">{{name}}</span>: {{desc}}
+              {{name}}: {{desc}}
           </p>
           {{/each}}
         </p>
         <p class="creature-content actions" >
-          <span class = "important">Actions:</span>
+          Actions:
           {{#each act}}
           <p>
-            <span class = "less-important">{{name}}</span>: {{desc}}
+              {{name}}: {{desc}}
               {{attack_bonus}}
           </p>
           {{/each}}
         </p>
         <p class="creature-content leg-actions" >
-          <span class = "important">Legendary Actions:</span> 
+          Legendary Actions: 
           {{#each lact}}
           <p>
-            <span class = "less-important">{{name}}</span>: {{desc}}
+              {{name}}: {{desc}}
           </p>
           {{/each}}
         </p>
