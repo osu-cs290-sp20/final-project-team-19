@@ -69,7 +69,7 @@ a:focus {
 
 #navbar-search-input:focus {
   outline: none;
-  background-color: white;
+  background-color: #fff;
 }
 
 #navbar-search-button {
@@ -78,27 +78,33 @@ a:focus {
   font-size: 16px;
   background: none;
   border: none;
-  color: red;
+  color: #343434;
   cursor: pointer;
 }
 
 #navbar-search-button:hover {
-  color: red;
+  color: #319df6;
 }
 
 /* this is used to find the center of the page for centering the buttons */
 .button-position {
-  margin: 0;
+
+  position: relative;
+ /* margin: 0;
   padding-top:10px;
-  position: absolute;
-  left:50%;
-  bottom: 77%;
+  position: relative;
+  left:100px;
+  bottom: 200px;
   -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);*/
+}
+
+.button-container {
+  padding-left: 45%;
 }
 
 #navbar-search-button:focus {
-  color: red;
+  color: #319df6;
   outline: none;
 }
 
@@ -323,12 +329,31 @@ textarea {
   background-color: #fff;
   width: 80%;
 }
+
+.link{
+  padding:5px;
+  margin: 5px;
+  display:table-column;
+
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.important {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.less-important {
+  font-style: italic;
+}
+
 select {
-    width: 29%;
-    padding: 7px 7px;
-    padding-left: 0px;
-    border: none;
-    border-radius: 5px;
-    color:red ;
-    background-color:black;
+  width: 29%;
+  padding: 7px 7px;
+  padding-left: 0px;
+  border: none;
+  border-radius: 5px;
+  color:red ;
+  background-color:black;
 }
