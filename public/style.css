@@ -361,3 +361,8 @@ select {
 
   font-weight: bold;
 }
+#spell-container{
+  margin: 50px 5%;
+  display: flex;
+  flex-wrap: wrap;
+}

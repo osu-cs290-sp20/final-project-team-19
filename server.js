@@ -35,6 +35,11 @@ app.get('/about',function(req, res, next){
 app.get('/spells',function(req, res, next){
   res.status(200).render('spells');
 });
+app.get('/api/spells/:name',function(req, res, next){
+  var name = req.params.name;
+  res.status(200).render('spells');
+});
+
 
 app.get('*',function(req, res, next){
   res.status(200).render('404');

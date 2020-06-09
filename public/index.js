@@ -10,13 +10,68 @@ var modal = document.getElementById("search-creature-modal");
 //
 // var acceptButton= document.getElementsByClassName("modal-accept-button");
 // acceptButton[0].addEventListener('click', acceptModal);
+// var allSpells =[];
+// window.addEventListener('DOMContentLoaded', function () {
+//
+//       const creatureData = fetch(spellsUrl)
+//       .then(function(response) {
+//         if (response.status !== 200) {
+//           console.log('Looks like there was a problem. Status Code: ' +
+//           response.status);
+//           inputPrompt(textInput);
+//           return;
+//         }
+//         // Examine the text in the response
+//         response.json().then(function(data) {
+// if()
+//           console.log((data["results"][3]["name"]));
+//           var spellsCollection = document.getElementsByClassName('spell');
+//           for (var i = 0; i < spellsCollection.length; i++) {
+//             allSpells.push(allsSpells[i].text);
+//             console.log(allSpells[i].text);
+//           }
+//
+//
+//         });
+//       }
+//     )
+//     .then(data => apiData = data)
+//     .catch(function(err) {
+//       console.log('Fetch Error :-S', err);
+//     });
+//
+//
+//   });
+
+
 
 var searchButton = document.getElementById("navbar-search-button");
+// var searchInput = document.getElementById('navbar-search-input');
+//   if (searchInput) {
+//     searchInput.addEventListener('input', doSearchUpdate);
+//
+//   }
 var url= "https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/";
 var equipmentUrl="https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/equipment/"
+var  spellsUrl="https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/spells/"
 var error;
 
+function doSearchUpdate(){
 
+  var searchQuery = document.getElementById('navbar-search-input').value;
+  var spellContainer = document.getElementById('spell-container');
+    if (spellContainer) {
+      while (spellContainer.lastChild) {
+        spellContainer.removeChild(spellContainer.lastChild);
+      }
+    }
+    console.log(document.getElementById('navbar-search-input').value);
+    allSpells.forEach(function (twit) {
+      if (twitMatchesSearchQuery(twit, searchQuery)) {
+        insertNewTwit(twit.text, twit.author);
+      }
+    });
+}
 
 // initiativeButton.onclick = function() {
 //   var modalBackdrop = document.getElementById('modal-backdrop');
@@ -36,10 +91,10 @@ var error;
 searchButton.onclick = function() {
 
   var textInput = document.getElementById("navbar-search-input").value;
-  console.log("here is the users search query input: ", textInput);
+var searchQuery = document.getElementById("search-query");
   var newUrl= createUrl(textInput, url);
   //get the search query from the drop down menu
-  var searchQuery = document.getElementById("search-query");
+
   // access the option selected by the user
   var searchField=(searchQuery.options[searchQuery.selectedIndex].value);
   //check the users input and generate the proper link for the specified field
@@ -72,7 +127,7 @@ searchButton.onclick = function() {
   generateEquipmentLink(textInput);
 }else if(searchField== "Spells"){
 
-  console.log("here is the users search query input: ", textInput);
+
 }else{
   var textInput=searchField;
   inputPrompt(textInput);
@@ -121,66 +176,8 @@ function generateEquipmentLink(textInput){
 
 
 }
-//___________________________________________
-//This function will handle building the equipment templates
-function generateEquipment(data){
-  //   var name = data["name"];
-  //   var equipmentCost = data["cost"]["quantity"];
-  //   var costType = data["cost"]["unit"];
-  //
-  //
-  //   var equipmentCategory = data["equipment_category"];
-  //   var damage= data["damage"];
-  //
-  //   var range = data["range"]["normal"];
-  //   var rangeLong= data["range"]["long"];
-  //   var properties = data["properties"];
-  // var des= data["desc"];
-  //
-  //   console.log(name);
-  //   console.log(equipmentCost);
-  //   console.log(properties);
-  //   if (damage.length == 0){
-  //     damage=[{name:"N/A"}];
-  //   }
-  //   if (range.length == null){
-  //       range= "N/A";
-  //   }
-  //   if (rangeLong.length == null){
-  //       range= "N/A";
-  //   }
-  //   if(des==""){
-  //     des="N/A";
-  //   }
 
-  // var equipmentInfoContext = {
-  //   name: name,
-  //   equipment_cost: equipmentCost,
-  //   cost:costType,
-  //   equipment_category: equipmentCategory,
-  //   damage: damage,
-  //   range:range,
-  //   rangeLong:rangeLong,
-  //   properties: properties,
-  //   desc: des
-  // }
-  //
-  // //checking if this is a new creature or a copy of one already on the sheet
-  // var temp=1;
-  // for(var i =0; i<priorInfo.length;i++){
-  //   if(JSON.stringify(priorInfo[i])==JSON.stringify(equipmentInfoContext)){
-  //     temp=0;
-  //   }
-  // }
-  //
-  // if(temp==1){
-  //   var equipmentHtml = Handlebars.templates.equipmentTemplate(equipmentInfoContext);
-  //
-  //   var creatureContainer = document.querySelector('main.creature-info-container');
-  //   creatureContainer.insertAdjacentHTML('beforeend', equipmentHtml);
-  //   priorInfo[priorInfo.length]=equipmentInfoContext;
-  // }
-}
+
 
 
 
@@ -464,6 +461,7 @@ function individualSpells(data){
     // Create anchor element.
     var b = document.createElement('div');
     var a = document.createElement('a');
+    a.classList.add('spell');
 
     b.classList.add("link");
     // Create the text node for anchor element.
@@ -587,99 +585,7 @@ function generateItemBlock(data){
     console.log("broke");
   }
 
-  // var name = data["name"];
-  // var desc = data["desc"];
-  //
-  // var gear_cat= data["gear_category"];
-  // var vehicle_cat = data["vehicle_category"];
-  // var weapon_cat = data["weapon_category"];
-  // var weapon_range = data["weapon_range"];
-  // var category_range = data["category_range"];
-  // var armor_class_base = data["armor_class"]["base"];
-  // var armor_class_dex = data["armor_class"]["dex_bonus"];
-  // var armor_class_max_bonus = data["armor_class"]["max_bonus"];
-  // var str_min = data["str_minimum"];
-  // var stealth = data["stealth_disadvantage"];
-  // var contents = data["contents"];
-  // var quantity = data["cost"]["quantity"];
-  // var unit = data["cost"]["unit"];
-  // var damage_dice = data["damage"]["damage_dice"];
-  // var damage_bonus = data["damage"]["damage_bonus"];
-  // var damage_type = data["damage"]["damage_type"];
-  // var range_normal = data["range"]["normal"];
-  // var range_long = data["range"]["long"];
-  // var properties = data["properties"];
-  // var th_damage_dice = data["2h_damage"]["damage_dice"];
-  // var th_damage_bonus = data["2h_damage"]["damage_bonus"];
-  // var th_damage_type = data["2h_damage"]["damage_type"];
-  // var throw_range_normal = data["throw_range"]["normal"];
-  // var throw_range_long = data["throw_range"]["long"];
-  // var speed_quantity = data["speed"]["quantity"];
-  // var speed_unit = data["speed"]["unit"];
-  // var capacity = data["capacity"];
-  //
-  // var new_contents;
-  // for(var i =0; i<contents.length();i++){
-  //     new_contents=contents[i][item_url].slice(15);
-  //     n=contents[i][item_url]=new_contents.charAt(0).toUpperCase() + new_contents.slice(1)
-  // }
-  //   if(armor_class_base== null){
-  //     armor_class_base="N/A";
-  //   }
-  //   if(armor_class_dex== null){
-  //     armor_class_dex="N/A";
-  //   }
-  //   if(armor_class_max_bonus== null){
-  //     armor_class_max_bonus="N/A";
-  //   }
-  //   if(th_damage_dice== null){
-  //     th_damage_dice="N/A";
-  //   }
-  //   if(th_damage_bonus== null){
-  //     th_damage_bonus="N/A";
-  //   }
-  //   if(th_damage_type== null){
-  //     th_damage_type="N/A";
-  //   }
-  //
-  //
-  //
-  //
-  //
-  //   var itemInfoContext = {
-  //    name:name,
-  //    desc:desc,
-  //    equipment_cat:equipment_cat,
-  //    gear_cat:gear_cat,
-  //    vehicle_cat:vehicle_cat,
-  //    weapon_cat:weapon_cat,
-  //    weapon_range:weapon_range,
-  //    category_range:category_range,
-  //    armor_class_base:armor_class_base,
-  //    armor_class_dex:armor_class_dex,
-  //    armor_class_max_bonus:armor_class_max_bonus,
-  //    str_min:str_min,
-  //    stealth:stealth,
-  //    contents:contents,
-  //    quantity:quantity,
-  //    unit:unit,
-  //    damage_dice:damage_dice,
-  //    damage_bonus:damage_bonus,
-  //    damage_type:damage_type,
-  //    range_normal:range_normal,
-  //    range_long:range_long,
-  //    properties:properties,
-  //    th_damage_dice:th_damage_dice,
-  //    th_damage_bonus:th_damage_bonus,
-  //    th_damage_type:th_damage_type,
-  //    throw_range_normal:throw_range_normal,
-  //    throw_range_long:throw_range_long,
-  //    speed_quantity:speed_quantity,
-  //    speed_unit:speed_unit,
-  //    capacity:capacity
-  // }
-  // var creatureContainer = document.querySelector('main.spell-container');
-  // creatureContainer.insertAdjacentHTML('beforeend',itemInfoContext);
+
 }
 function generateArmor(data){
   console.log("In the armor function");
