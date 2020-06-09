@@ -163,6 +163,7 @@ Modal for creating initative */
   right: 0;
   z-index: 1010;
   overflow: scroll;
+
 }
 
 .hidden {
