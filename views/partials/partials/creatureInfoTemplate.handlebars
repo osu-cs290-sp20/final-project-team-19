@@ -1,0 +1,77 @@
+<article class="creature creature-info">
+
+    <div class="creature-content">
+        <p class="creature-name">
+          <span class = "important">{{name}}</span>
+        </p>
+        <span class = "important">
+          Challenge Rating:
+        </span>
+        <span>
+        {{CR}}
+        </span>
+        <p>
+          <span class="important"> Hit Dice: </span><span>{{hpd}}</span>
+        </p>
+        <p class="creature-content stat-block" >
+          <span class = "important">Strength:</span> <span>{{str}}</span>,
+          <span class = "important">Dexterity:</span> <span>{{dex}}</span>,
+          <span class = "important">Constitution:</span> <span>{{con}}</span>,
+          <span class = "important">Intelligence:</span> <span>{{int}}</span>,
+          <span class = "important">Wisdom:</span> <span>{{wis}}</span>,
+          <span class = "important">Charisma:</span> <span>{{cha}}</span>
+        </p>
+        <p class= "creature-content proficiencies">
+         <span class = "important">Proficiencies:</span>
+          {{#each prof}}
+          <p>
+            <span class = "less-important">{{name}}</span>: {{value}}
+          </p>
+          {{/each}}
+        </p>
+        <p class="creature-content dmg-vul" >
+          <span class = "important">Vulnerabilities:</span> <span>{{vuls}}</span>
+        </p>
+        <p class="creature-content dmg-resist" >
+          <span class = "important">Resistances:</span> <span>{{resist}}</span>
+        </p>
+        <p class="creature-content dmg-immune" >
+          <span class = "important">Immunities:</span> <span>{{immune}}</span>
+        </p>
+        <p class="creature-content condit-immune" >
+          <span class = "important">Condition Immunities:</span>
+          {{#each con_immune}}
+              {{name}},
+          {{/each}}
+        </p>
+        <p class="creature-content special-abilities" >
+          <span class = "important">Special Abilities:</span>
+          {{#each sa}}
+          <p>
+              <span class = "less-important">{{name}}</span>: {{desc}}
+          </p>
+          {{/each}}
+        </p>
+        <p class="creature-content actions" >
+          <span class = "important">Actions:</span>
+          {{#each act}}
+          <p>
+            <span class = "less-important">{{name}}</span>: {{desc}}
+
+              </p>
+
+          </p>
+
+          {{/each}}
+        </p>
+        <p class="creature-content leg-actions" >
+          <span class = "important">Legendary Actions:</span>
+          {{#each lact}}
+          <p>
+            <span class = "less-important">{{name}}</span>: {{desc}}
+          </p>
+          {{/each}}
+        </p>
+
+    </div>
+</article>
