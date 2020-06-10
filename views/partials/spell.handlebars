@@ -1,5 +1,5 @@
-﻿<article class="spell-box">
-    <div class="spell-content">
+﻿<article class="creature-info">
+    <div class="creature-content">
         <h4 class="spell-name">
             {{name}}
         </h4>
@@ -21,9 +21,7 @@
             <div>
                 <span class="spell-info">Components: </span>
                 <p class="spell-item">
-                    {{#each components}}
-                    {{name}},
-                    {{/each}} 
+                    {{components}}
                 </p>
             </div>
 
@@ -58,11 +56,7 @@
 
             <div>
                 <span class="spell-info">School: </span>
-                <p class="spell-item">
-                    {{#each school}}
-                    {{name}}
-                    {{/each}}
-                </p>
+                <span class="spell-item">{{school}}</span>
             </div>
             <div>
                 <span class="spell-info">Classes: </span>
@@ -72,6 +66,7 @@
                     {{/each}}
                 </p>
             </div>
+            {{#if subclasses}}
             <div>
                 <span class="spell-info">Subclasses: </span>
                 <p class="spell-item">
@@ -80,6 +75,7 @@
                     {{/each}}
                 </p>
             </div>
+            {{/if}}
 
 
         </div>
