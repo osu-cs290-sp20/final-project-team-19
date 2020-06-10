@@ -1,14 +1,13 @@
 
 body {
-  font-family: Helvetica, sans-serif;
-  margin: 0;
-  background-color: #eee;
+    font-family: 'Noto Serif', serif;
+    margin: 0;
+    background-color: #424242;
 }
 
 a {
   text-decoration: none;
 }
-
 .site-title {
   text-align:center;
   margin: 0;
@@ -18,11 +17,33 @@ a {
   background-color: black;
   color: red;
 }
+.fa-dice-d20{
+    color:red;
+}
+.fa-d-and-d{
+    color:red;
+}
+.fa-book {
+    color:black;
+}
+.fa-dungeon{
+    color:black;
+}
 
+.far fa-compass color{
+    color:black;
+}
+.fa-scroll{
+    color:black;
+}
+.fas fa-user-secret{
+    color:black;
+}
 .navbar {
-  background-color: #fff;
-  font-size: 18px;
-  line-height: 22px;
+    background-color: #7a0000;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
 }
 
 .navlist {
@@ -35,12 +56,12 @@ a {
 }
 
 a {
-  color: #343434;
+  color: #000000;
 }
 
 a:hover,
 a:focus {
-  color: red;
+    color: #ff1900;
 }
 
 a:focus {
@@ -281,14 +302,14 @@ margin:20px;
 }
 
 .creature {
-  flex: 0 1 28%;
-  display: inline-block;
-  margin: 1%;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 2px;
-  background-color: #fff;
-  width: 25%;
+    flex: 0 1 28%;
+    display: inline-block;
+    margin: 1%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 2px;
+    background-color: #cccccc;
+    width: 25%;
 }
 
 textarea {
@@ -321,14 +342,14 @@ textarea {
 }
 
 .creature-info {
-  flex: 0 1 100%;
-  display: inline-block;
-  margin: 1%;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 2px;
-  background-color: #fff;
-  width: 80%;
+    flex: 0 1 100%;
+    display: inline-block;
+    margin: 1%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 2px;
+    background-color: #cccccc;
+    width: 80%;
 }
 
 .link{
