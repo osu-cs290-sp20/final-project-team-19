@@ -185,6 +185,7 @@ Modal for creating initative */
   z-index: 1010;
   overflow: scroll;
 
+
 }
 
 .hidden {
@@ -204,6 +205,16 @@ Modal for creating initative */
 .modal-header {
   position: relative;
   padding: 10px 20px;
+  /*====================================*/
+  padding:9px 15px;
+border-bottom:1px solid #eee;
+background-color: darkred;
+-webkit-border-top-left-radius: 5px;
+-webkit-border-top-right-radius: 5px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+ border-top-left-radius: 5px;
+ border-top-right-radius: 5px;
 }
 
 .modal-header h3 {
