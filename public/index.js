@@ -201,11 +201,12 @@ function acceptModal(){
   var apiData;
   var textInput = document.getElementById("modal-text-input").value;
   var numberInput=document.getElementById("modal-number-input").value;
+  var temp = parseInt(numberInput,10);
 
   if(textInput===""){
     prompt();
-  }else if(numberInput===""){
-    prompt();
+  }else if(numberInput==="" || !(Number.isInteger(temp))){
+    numPrompt();
   }else{
     // this will call the function that handles the initiative rolling/displaying of the creatures
     console.log("Here are the inputs for creature: ", textInput);
@@ -325,7 +326,6 @@ function generateCreatures(num, data){
 
 function inputPrompt(textInput){
   alert("Your request for: "+ textInput + " was not found in the dnd5eapi");
-  modal.style.display = "block";
 
 }
 //________________________________________________________
@@ -357,9 +357,10 @@ function generateName(){
 //prompts user for correct inputs
 function prompt(){
   alert("Enter values into the fields");
-  modal.style.display = "block";
 }
-
+function numPrompt(){
+  alert("Enter numbers into the fields besides name");
+}
 
 //used to check if an infosheet has already been sent.
 var priorInfo=[];
@@ -474,7 +475,9 @@ function individualSpells(data){
     a.title = data["results"][i]["name"];
 
     // Set the href property.
-    a.href = data["results"][i]["url"];
+    var temp = data["results"][i]["url"].slice(11);
+    
+    a.href = temp ;
 
     b.appendChild(a);
 
@@ -514,8 +517,36 @@ function spellAPICall(){
 });
 }
 
+function generateSpellData() {
+  var name = window.location.pathname.slice(1);
+  var singleSpellUrl = spellsUrl + name;
+  console.log(singleSpellUrl);
+
+  const spellData = fetch(singleSpellUrl)
+    .then(function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+        response.status);
+        inputPrompt(textInput);
+        return;
+      }
+      // Examine the text in the response
+      response.json().then(function(data) {
+
+
+        generateSpellBlock(data);
+
+      });
+    }
+  )
+  .then(data => apiData = data)
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+
+}
+
 function generateSpellBlock(data){
-  console.log("IN the spell block");
   var name = data["name"];
   var desc = data["desc"];
   var higher_level = data["higher_level"];
@@ -525,9 +556,9 @@ function generateSpellBlock(data){
   var ritual = data["ritual"];
   var duration = data["duration"];
   var concentration = data["concentration"];
-  var casting_time = data["time"];
+  var casting_time = data["casting_time"];
   var level = data["level"];
-  var school = data["school"];
+  var school = data["school"]["name"];
   var classes = data["classes"];
   var subclasses = data["subclasses"];
 
@@ -541,14 +572,15 @@ function generateSpellBlock(data){
     ritual:ritual,
     duration:duration,
     concentration:concentration,
-    time:time,
+    time:casting_time,
     level:level,
     school:school,
     classes:classes,
     subclasses:subclasses
   }
-  var creatureContainer = document.querySelector('main.spell-container');
-  creatureContainer.insertAdjacentHTML('beforeend',spellInfoContext);
+  var spellHtml = Handlebars.templates.spell(spellInfoContext);
+  var spellContainer = document.getElementById('spell-container');
+  spellContainer.insertAdjacentHTML('beforeend',spellHtml);
 }
 
 
@@ -841,3 +873,4 @@ function generateStandardGear(data){
   }
 
 }
+
