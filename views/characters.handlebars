@@ -10,12 +10,13 @@
     </article>
   </main>
 
-<main class="creature-info-container">
 
-
-</main>
 <main class="body-text creature-container">
 
+
+{{#each characterData}}
+{{> character}}
+{{/each}}
 
 
 
@@ -33,7 +34,17 @@
         <div class="modal-body">
           <div class="modal-input-element">
             <label for="modal-text-input"> Character name</label>
-              <textarea id="modal-text-input"></textarea>
+              <textarea class="modal-text-input"></textarea>
+            </div>
+            <div class="modal-input-element">
+              <label for="modal-attribution-input"> Class </label>
+                <textarea class="modal-text-input"></textarea>
+
+            </div>
+            <div class="modal-input-element">
+              <label for="modal-attribution-input">Level </label>
+                <textarea class="modal-number-input"></textarea>
+
             </div>
 
           <div class="modal-input-element">
@@ -55,7 +66,7 @@
             <label for="modal-attribution-input">Intelligence</label>
               <textarea class="modal-number-input"></textarea>
 
-          </div>          
+          </div>
           <div class="modal-input-element">
             <label for="modal-attribution-input">Wisdom</label>
               <textarea class="modal-number-input"></textarea>

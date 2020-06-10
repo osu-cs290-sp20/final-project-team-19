@@ -12,7 +12,10 @@ var spellStuff= require("./spellStuff.js");
 var app = express();
 var http = require("http");
 
-var characterData = require("./characterData");
+// var characterData = require("./characterData");
+
+let rawData = fs.readFileSync('characterData.json');
+let characters = JSON.parse(rawData);
 
 app.use(bp.json());
 
@@ -49,7 +52,12 @@ app.get('/spells',function(req, res, next){
 });
 
 app.get('/characters',function(req, res, next){
-  res.status(200).render('characters');
+var data =require('./characterData.json');
+
+// console.log(characters);
+  res.status(200).render('characters',
+    {characterData:data}
+  );
 });
 
 app.post("/characters/newCharacter", function(req,res,next) {
@@ -77,8 +85,10 @@ app.post("/characters/newCharacter", function(req,res,next) {
       console.log(err);
     } else {
       obj = JSON.parse(data); //now it an object
-      obj.characters.push({
+      obj.push({
         name: req.body.name,
+        cla: req.body.cla,
+        lvl: req.body.lvl,
         str: req.body.str,
         dex: req.body.dex,
         con: req.body.con,
@@ -91,8 +101,8 @@ app.post("/characters/newCharacter", function(req,res,next) {
       }); //add some data
       json = JSON.stringify(obj, null, 2); //convert it back to json
       fs.writeFile('characterData.json', json, 'utf8', function(err){
-    if(err) throw err;
-  }); // write it back
+        if(err) throw err;
+      }); // write it back
     }
   });
 
