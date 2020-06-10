@@ -20,10 +20,6 @@ templates['creatureTemplate'] = template({"compiler":[8,">= 4.3.0"],"main":funct
     + alias4(((helper = (helper = lookupProperty(helpers,"hit_points") || (depth0 != null ? lookupProperty(depth0,"hit_points") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"hit_points","hash":{},"data":data,"loc":{"start":{"line":17,"column":12},"end":{"line":17,"column":26}}}) : helper)))
     + "\r\n        </p>\r\n        <p class=\"creature-content initiative\" >\r\n          Initiative:\r\n          "
     + alias4(((helper = (helper = lookupProperty(helpers,"initiative") || (depth0 != null ? lookupProperty(depth0,"initiative") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"initiative","hash":{},"data":data,"loc":{"start":{"line":21,"column":10},"end":{"line":21,"column":24}}}) : helper)))
-<<<<<<< HEAD
-    + "\r\n        </p>\r\n        <button class=\"creature-button\" > Delete</button>\r\n\r\n    </div>\r\n</article>\r\n";
-=======
-    + "\r\n        </p>\r\n        <div class=\"wrap\">\r\n          <button class=\"creature-button button btn create-initative\">Delete Creature</button>\r\n        </div>\r\n\r\n    </div>\r\n</article>\r\n";
->>>>>>> 5861defe98855fe32765def2e53ab6a9d1d4e499
+    + "\r\n        </p>\r\n\r\n          <button id=\"creature-button \">Delete</button>\r\n\r\n\r\n    </div>\r\n</article>\r\n";
 },"useData":true});
 })();

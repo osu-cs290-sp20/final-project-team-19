@@ -1,6 +1,13 @@
 var modal = document.getElementById("search-creature-modal");
-// var creatureDelButton=document.getElementsByClassName("creature-button");
 
+let allCreatureButtons= document.querySelectorAll('.creature-button')
+
+allCreatureButtons.forEach((btn) => {
+  console.log(allCreatureButtons);
+  btn.addEventListener("click", (event) => {
+    alert(event.target);
+  });
+});
 // var initiativeButton= document.getElementById("create-initiative-button");
 //
 // var closeButton= document.getElementsByClassName("modal-close-button");
@@ -74,18 +81,7 @@ function doSearchUpdate(){
     });
 }
 
-// initiativeButton.onclick = function() {
-//   var modalBackdrop = document.getElementById('modal-backdrop');
-//   var searchCreatureModal = document.getElementById('search-creature-modal');
-//
-//   modalBackdrop.classList.remove('hidden');
-//   searchCreatureModal.classList.remove('hidden');
-//
-//
-//   document.getElementById("modal-text-input").value= "";
-//   document.getElementById("modal-number-input").value= "";
-//
-// }
+
 
 //___________________________________________
 //This function takes the users input from the search bar and puts the stat block in place
