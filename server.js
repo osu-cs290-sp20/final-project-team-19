@@ -48,12 +48,11 @@ app.get('/characters',function(req, res, next){
 });
 
 app.post("/characters/newCharacter", function(req,res,next) {
-  console.log("== req.body:", req.body);
-  console.log("  -- req.body.url:", req.body.name);
-  console.log("  -- req.body.caption:", req.body.dex);
-  var test = req.body;
-
-  characterData.characters.push({
+  // console.log("== req.body:", req.body);
+  // console.log("  -- req.body.url:", req.body.name);
+  // console.log("  -- req.body.caption:", req.body.dex);
+  // var test = req.body;
+  var character= {
     name: req.body.name,
     str: req.body.str,
     dex: req.body.dex,
@@ -64,10 +63,39 @@ app.post("/characters/newCharacter", function(req,res,next) {
     ac: req.body.ac,
     hp: req.body.hp,
     ms: req.body.ms
-  });
+  }
 
-  let data = JSON.stringify(test);
-  fs.writeFileSync('characterData.json', data);
+const characterString = JSON.stringify(character, null, 2);
+
+fs.writeFileSync('./characterData.json', characterString);
+
+  // fs.readFile('characterData.json', 'utf-8', function(err, data) {
+  //   if (err) throw err
+  //
+  //   var arrayOfObjects = JSON.parse(data);
+  //   arrayOfObjects.characterData.characters.push({
+  //     name: req.body.name,
+  //     str: req.body.str,
+  //     dex: req.body.dex,
+  //     con: req.body.con,
+  //     int: req.body.int,
+  //     wis: req.body.wis,
+  //     cha: req.body.cha,
+  //     ac: req.body.ac,
+  //     hp: req.body.hp,
+  //     ms: req.body.ms
+  //   });
+  //   fs.writeFile('characterData.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+  //     if (err) throw err
+  //     console.log('Done!');
+  //   })
+  // })
+
+
+
+
+  // let data = JSON.stringify(test);
+  // fs.writeFileSync('characterData.json', data);
 
   res.status(200).send("Charcter done");
 
