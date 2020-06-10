@@ -1,4 +1,5 @@
 var modal = document.getElementById("search-creature-modal");
+// var creatureDelButton=document.getElementsByClassName("creature-button");
 
 // var initiativeButton= document.getElementById("create-initiative-button");
 //
@@ -476,7 +477,7 @@ function individualSpells(data){
 
     // Set the href property.
     var temp = data["results"][i]["url"].slice(11);
-    
+
     a.href = temp ;
 
     b.appendChild(a);
@@ -873,4 +874,3 @@ function generateStandardGear(data){
   }
 
 }
-
