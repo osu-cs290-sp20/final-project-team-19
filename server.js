@@ -5,7 +5,7 @@ var fs= require('fs');
 var express = require('express');
 var bp = require('body-parser');
 var exphbs = require('express-handlebars');
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
 var spellStuff= require("./spellStuff.js");
 
 
@@ -86,7 +86,7 @@ app.get('/:spellName',function(req, res, next){
   }else{
     next();
   }
-  
+
 });
 
 app.get('*',function(req, res, next){
@@ -96,5 +96,3 @@ app.get('*',function(req, res, next){
 app.listen(3000, function(){
   console.log("The server is listening on port 3000");
 });
-
-
