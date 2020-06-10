@@ -1,0 +1,94 @@
+<link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+ />
+  <script src="characterButton.js" charset="utf-8" defer></script>
+
+  <main class = "button-container">
+    <article class="button-position">
+      <button class="btn create-character" id="create-character-button">Add Character</button>
+    </article>
+  </main>
+
+<main class="creature-info-container">
+
+
+</main>
+<main class="body-text creature-container">
+
+
+
+
+</main>
+
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="create-character-modal" class="hidden ">
+      <div class="modal-dialog animate__animated animate__rollIn animate__faster">
+
+        <div class="modal-header">
+          <h2>Create your character</h2>
+          <button type="button" class="character-close-button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-input-element">
+            <label for="modal-text-input"> Character name</label>
+              <textarea id="modal-text-input"></textarea>
+            </div>
+
+          <div class="modal-input-element">
+            <label for="modal-attribution-input">Strength</label>
+              <textarea class="modal-number-input"></textarea>
+
+          </div>
+          <div class="modal-input-element">
+            <label for="modal-attribution-input">Dexterity</label>
+              <textarea class="modal-number-input"></textarea>
+
+          </div>
+          <div class="modal-input-element">
+            <label for="modal-attribution-input">Constitution</label>
+              <textarea class="modal-number-input"></textarea>
+
+          </div>
+          <div class="modal-input-element">
+            <label for="modal-attribution-input">Intelligence</label>
+              <textarea class="modal-number-input"></textarea>
+
+          </div>          
+          <div class="modal-input-element">
+            <label for="modal-attribution-input">Wisdom</label>
+              <textarea class="modal-number-input"></textarea>
+
+          </div>
+          <div class="modal-input-element">
+            <label for="modal-attribution-input">Charisma</label>
+              <textarea class="modal-number-input"></textarea>
+
+          </div>
+          <div class="modal-input-element">
+            <label for="modal-attribution-input">Armor Class</label>
+              <textarea class="modal-number-input"></textarea>
+
+          </div>
+          <div class="modal-input-element">
+            <label for="modal-attribution-input">Hit Points</label>
+              <textarea class="modal-number-input"></textarea>
+
+          </div>
+          <div class="modal-input-element">
+            <label for="modal-attribution-input">Movement Speed</label>
+              <textarea class="modal-number-input"></textarea>
+
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="character-cancel-button">Cancel</button>
+          <button type="button" class="character-accept-button">Create Character</button>
+        </div>
+
+
+
+      </div>
+    </div>
